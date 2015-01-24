@@ -13,6 +13,7 @@ GameObject:
   - 23: {fileID: 2385454}
   - 114: {fileID: 11478292}
   - 54: {fileID: 5492452}
+  - 114: {fileID: 11411628}
   m_Layer: 0
   m_Name: GooBlob
   m_TagString: GooBall
@@ -74,6 +75,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 10
   m_CollisionDetection: 0
+--- !u!114 &11411628
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91e0436d56cbebe4cbd68991a7f0d311, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAxis: 1
+  selectedInput: 
 --- !u!114 &11478292
 MonoBehaviour:
   m_ObjectHideFlags: 1

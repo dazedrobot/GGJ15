@@ -34,8 +34,8 @@ public class GooInput : MonoBehaviour
 		{"RHorizontal:+", true},
 	};
 
-	bool isAxis = true;
-	string selectedInput = "";
+	public bool isAxis = true;
+	public string selectedInput = "";
 
 	// Use this for initialization
 	void Start ()
@@ -51,7 +51,7 @@ public class GooInput : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (selectedInput == "") {
+		//if (selectedInput == "") {
 			foreach (string buttonName in buttonAvailable.Keys) {
 				if (buttonAvailable[buttonName] && Input.GetButtonDown(buttonName)) {
 					selectedInput = buttonName;
@@ -81,9 +81,9 @@ public class GooInput : MonoBehaviour
 				}
 			}
 
-		} else {
+		//} else {
 			// trigger jump here.
-		}
+		//}
 
 	}
 }
