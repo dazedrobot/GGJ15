@@ -6,6 +6,7 @@ public class GooBall : MonoBehaviour
 {
     public List<GameObject> Knives;
     public List<GameObject> Mergers;
+    private bool m_jump = true;
     // Use this for initialization
     void Start () 
     {
@@ -13,13 +14,20 @@ public class GooBall : MonoBehaviour
         Mergers = new List<GameObject>(); 
     }
     
-    // Update is called once per frame
-    void Update () 
+	void Update () 
+	{
+		if (Input.GetMouseButtonDown (0)) 
+		{
+            if(m_jump == true)
+            {
+                m_jump = false;
+                rigidbody.AddForce(new Vector3(0.0f, 500.0f, 0.0f));
+            }
+		}
+	}
+
+    void OnCollisionEnter(Collision col)
     {
-        if (Input.GetMouseButtonDown (0)) 
-        {
-            //rigidbody.AddForce(new Vector3(0.0f, 100.0f, 0.0f));
-            //Debug.Log("Click");
-        }
+        m_jump = true;
     }
 }
