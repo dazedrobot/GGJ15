@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GooballRender : MonoBehaviour {
-
+public class GooballRender : MonoBehaviour 
+{
     public float scrollSpeed = 0.5f;
 
 	// Use this for initialization
