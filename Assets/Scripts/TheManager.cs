@@ -6,15 +6,18 @@ public class TheManager : MonoBehaviour
 {
 	public static int g_numGoo = 128;
 	public GameObject g_gooBallPrefab;
+    public GameObject g_gooBallContainer;
 	public Stack<GameObject> g_gooBallsPool;
     public List<GameObject> g_gooBalls;
 
 	void Start () 
 	{
+        g_gooBallContainer = new GameObject("GooBallContainer");
         g_gooBallsPool = new Stack<GameObject>();
         for (int i = 0; i < g_numGoo; ++i)
         {
             GameObject go = Instantiate(g_gooBallPrefab, new Vector3((float)i, 0.0f, 0.0f), Quaternion.identity) as GameObject;
+            go.transform.SetParent(g_gooBallContainer.transform);
             go.SetActive(false);
             g_gooBallsPool.Push(go);
         }
