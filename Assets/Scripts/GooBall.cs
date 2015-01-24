@@ -3,19 +3,26 @@ using System.Collections;
 
 public class GooBall : MonoBehaviour
 {
-	// Use this for initialization
+    private bool m_jump = true;
 	void Start () 
 	{
 		
 	}
 	
-	// Update is called once per frame
 	void Update () 
 	{
 		if (Input.GetMouseButtonDown (0)) 
 		{
-			//rigidbody.AddForce(new Vector3(0.0f, 100.0f, 0.0f));
-			//Debug.Log("Click");
+            if(m_jump == true)
+            {
+                m_jump = false;
+                rigidbody.AddForce(new Vector3(0.0f, 500.0f, 0.0f));
+            }
 		}
 	}
+
+    void OnCollisionEnter(Collision col)
+    {
+        m_jump = true;
+    }
 }
