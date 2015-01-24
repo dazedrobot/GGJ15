@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Merger : MonoBehaviour 
 {
     public GameObject g_largeGooBall;
-
+    public GooBall g_smallGooBall;
 	void Start ()
     {
 	    
@@ -13,19 +13,26 @@ public class Merger : MonoBehaviour
 	
 	void Update () 
     {
+        transform.Translate(new Vector3(0, 0, -10.0f) * Time.deltaTime);
+        if (transform.position.z < -20)
+        {
+            Destroy(gameObject);
+        }
+        transform.localScale = new Vector3(g_smallGooBall.TargetScale.x * 0.5f, 5, g_smallGooBall.TargetScale.z * 0.25f);
+        transform.position = new Vector3(g_smallGooBall.transform.position.x, transform.position.y, transform.position.z);
 	}
-
-    void FixedUpdate()
-    {
-        this.transform.Translate(new Vector3(0, 0, -10.0f) * Time.deltaTime);
-        if (transform.position.z < -20) { Destroy(gameObject); }
-    }
 
     void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag.ToString() == "GooBall")
         {
-            if (collider.GetComponent<GooBall>().g_phase == true)
+            GooBall GB = collider.GetComponent<GooBall>();
+            if (GB != g_smallGooBall)
+            {
+                //not our target
+                return;
+            }
+            if (GB.g_phase == true)
             {
                 FindObjectOfType<TheManager>().MergeGooBall(collider.gameObject, g_largeGooBall);
                 Debug.Log("Merged");

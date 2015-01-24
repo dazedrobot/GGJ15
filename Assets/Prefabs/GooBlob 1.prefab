@@ -30,7 +30,7 @@ GameObject:
   - 33: {fileID: 3313764}
   - 23: {fileID: 2313764}
   - 114: {fileID: 11478830}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Goo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
