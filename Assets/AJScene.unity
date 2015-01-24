@@ -263,6 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_gooBallPrefab: {fileID: 185454, guid: 344affe650d3f3e47ad2b1493bca6333, type: 2}
+  g_gooBallContainer: {fileID: 0}
   g_gooBalls: []
 --- !u!1 &924547434
 GameObject:
