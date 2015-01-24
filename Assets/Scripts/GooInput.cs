@@ -64,6 +64,11 @@ public class GooInput : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ballComponent.Phase();
+        }
+
 		if (selectedInput == "") {
 			foreach (string buttonName in buttonAvailable.Keys) {
 				if (buttonAvailable [buttonName] && Input.GetButtonDown (buttonName)) {
