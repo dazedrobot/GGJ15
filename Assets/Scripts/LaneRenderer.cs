@@ -35,14 +35,11 @@ public class LaneRenderer : MonoBehaviour {
 			Lines [i] =  (GameObject)Instantiate(LinePrefab, new Vector3(0, 0, 0), Quaternion.identity);
 			Lines [i].transform.parent = transform;
 		}
-		Lines [0].transform.position = new Vector3(pos.x - (scale /2.0f),0,0);
-		//Lines [1].transform.position = new Vector3(pos.x - (scale /2.0f),0,0);
 
-		if (mgr.g_gooBalls.Count < 2) {
-			return;		
-		}
-		//Lines [1].transform.position = new Vector3(pos.x - (scale /2.0f),0,0);
+		Lines [0].transform.position = new Vector3(pos.x - (scale /2.0f),0,0);
+
 		float prevX = pos.x - (scale / 2.0f);
+
 		for(int i =1; i<Lines.Length; i++){
 			prevX += mgr.g_gooBalls[i-1].transform.localScale.x;
 			Lines [i].transform.position = new Vector3(prevX,0,0);
