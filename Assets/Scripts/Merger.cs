@@ -12,16 +12,20 @@ public class Merger : MonoBehaviour
 	
 	void Update () 
     {
-	    
 	}
 
-    void OnTriggerEnter(Collider smallGooBall)
+    void FixedUpdate()
     {
-		Debug.Log("Enter collision");
+        this.transform.Translate(new Vector3(0, 0, -10.0f) * Time.deltaTime);
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
         if (collider.gameObject.tag.ToString() == "GooBall")
         {
-            FindObjectOfType<TheManager>().MergeGooBall(smallGooBall.gameObject, g_largeGooBall);
-            Debug.Log("MARGE");
+            FindObjectOfType<TheManager>().MergeGooBall(collider.gameObject, g_largeGooBall);
+            Debug.Log("Merged");
+            Destroy(gameObject);
         }
     }
 }

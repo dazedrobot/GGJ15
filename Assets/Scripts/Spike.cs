@@ -13,6 +13,10 @@ public class Spike : MonoBehaviour
     {
 	
 	}
+    void FixedUpdate()
+    {
+        this.transform.Translate(new Vector3(0, 0, -10.0f) * Time.deltaTime);
+    }
 
     void OnTriggerEnter(Collider collider)
     {
@@ -20,6 +24,7 @@ public class Spike : MonoBehaviour
         {
             FindObjectOfType<TheManager>().SplitGooBall(collider.gameObject);
             Debug.Log("Spiked");
+            Destroy(gameObject);
         }
     }
 }

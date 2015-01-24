@@ -30,16 +30,18 @@ public class TheManager : MonoBehaviour
         g_gooBalls[0].transform.position = new Vector3(0.0f, 0.0f, 0.0f);
 		LR = LaneRendererObj.GetComponent<LaneRenderer>();
 		LR.Process ();
-		MakeSpike ();
 	}
 
 	void Update () 
 	{
 		if (Input.GetKeyDown (KeyCode.M)) 
 		{
-			print("KEypressed");
 			MakeMerger();
 		}
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            MakeSpike();
+        }
 	}
 
 	public void SplitGooBall(GameObject go)
@@ -61,13 +63,15 @@ public class TheManager : MonoBehaviour
 	{
 		Debug.Log("Merging ..");
 		large.transform.localScale += small.transform.localScale;
-		if (transform.position.x > 0)
-				large.transform.position += new Vector3 (small.transform.localScale.x * 0.5f, 0.0f, 0.0f);
-		else
+        if (large.transform.position.x > small.transform.position.x)
 				large.transform.position -= new Vector3 (small.transform.localScale.x * 0.5f, 0.0f, 0.0f);
+		else
+				large.transform.position += new Vector3 (small.transform.localScale.x * 0.5f, 0.0f, 0.0f);
 		small.SetActive (false);
 		g_gooBallsPool.Push (small);
 		g_gooBalls.RemoveAt (g_gooBalls.IndexOf (small));
+        LR.Process();
+
 	}
 
 	private struct intTouple{
