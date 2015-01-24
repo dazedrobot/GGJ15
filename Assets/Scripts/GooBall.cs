@@ -14,7 +14,7 @@ public class GooBall : MonoBehaviour
 	{
 		if (Input.GetMouseButtonDown (0)) 
 		{
-			rigidbody.AddForce(new Vector3(0.0f, 10.0f, 10000.0f));
+			//rigidbody.AddForce(new Vector3(0.0f, 100.0f, 0.0f));
 			Debug.Log("Click");
 		}
 	}
@@ -24,6 +24,7 @@ public class GooBall : MonoBehaviour
 		if (collider.gameObject.tag.ToString() == "Spike") 
 		{
 			gameObject.transform.localScale = gameObject.transform.localScale / 2;
+            gameObject.transform.position -= new Vector3(0.0f, 0.0f, 0.0f);
 			GameObject.FindWithTag("TheManager").GetComponent<TheManager>().SplitGooBall(this.gameObject);
 
 			Debug.Log("SPLIT");
