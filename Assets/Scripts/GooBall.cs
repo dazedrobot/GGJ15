@@ -6,6 +6,7 @@ public class GooBall : MonoBehaviour
 {
     public List<GameObject> Knives;
     public List<GameObject> Mergers;
+    public GameObject BallRenderer;
     public bool g_phase = false;
     private float m_duration = 0.0f;
     private float m_cooldown = 0.0f;    
@@ -20,7 +21,7 @@ public class GooBall : MonoBehaviour
 		if (Input.GetMouseButtonDown (0)) 
 		{
             g_phase = true;
-         //   renderer.material.color = new Color(0.5f, 0.0f, 0.5f, 0.5f);
+            BallRenderer.renderer.material.color = new Color(0.5f, 0.0f, 0.5f, 0.8f);
 		}
         if(g_phase == true)
             {
@@ -29,7 +30,7 @@ public class GooBall : MonoBehaviour
                 {
                     g_phase = false;
                     m_cooldown = 0.3f;
-                //    renderer.material.color = new Color(0.5f, 0.0f, 0.0f, 1.0f);
+                    BallRenderer.renderer.material.color = new Color(0.5f, 0.0f, 0.0f, 1.0f);
                 }
             }
         if (m_cooldown > 0)
@@ -37,7 +38,7 @@ public class GooBall : MonoBehaviour
             m_cooldown -= Time.deltaTime;
             if (m_cooldown < 0)
             {
-          //      renderer.material.color = new Color(0.0f, 0.5f, 0.0f, 1.0f);
+                BallRenderer.renderer.material.color = new Color(0.0f, 0.5f, 0.0f, 1.0f);
                 m_duration = 0.0f;
             }
         }

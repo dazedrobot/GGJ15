@@ -22,6 +22,6 @@ public class GooballRender : MonoBehaviour {
         renderer.material.SetTextureOffset("_MainTex", new Vector2(0, -offset));
         renderer.material.SetTextureOffset("_BumpMap", new Vector2(0, -offset));
 
-        transform.localScale = new Vector3(0.9f + (Mathf.Cos(Time.time+0.2f) * 0.1f), 1.2f + (Mathf.Sin(Time.time) * 0.2f), 0.9f + (Mathf.Cos(Time.time) * 0.1f));
+        transform.localScale = new Vector3(0.9f + (Mathf.Cos(Time.time+0.2f) * 0.1f), 1.0f + (Mathf.Sin(Time.time) * 0.2f), 0.9f + (Mathf.Cos(Time.time) * 0.1f));
     }
 }
