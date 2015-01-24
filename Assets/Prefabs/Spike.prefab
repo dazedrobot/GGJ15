@@ -8,11 +8,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 416854}
-  - 33: {fileID: 3316854}
   - 65: {fileID: 6516854}
   - 23: {fileID: 2316854}
   - 54: {fileID: 5485198}
   - 114: {fileID: 11426612}
+  - 33: {fileID: 3323118}
   m_Layer: 9
   m_Name: Spike
   m_TagString: Spike
@@ -52,13 +52,13 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3316854
+--- !u!33 &3323118
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 116854}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 8305e9426ce468b4181e2b47ea45e89a, type: 3}
 --- !u!54 &5485198
 Rigidbody:
   m_ObjectHideFlags: 1
