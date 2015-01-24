@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: road2
-  m_Shader: {fileID: 4, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: green-slime
+  m_Shader: {fileID: 33, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,27 +17,27 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 1519e8df6c3d43846939b6045b34031f, type: 3}
-          m_Scale: {x: 4, y: 24}
+          m_Texture: {fileID: 2800000, guid: fafb7e429f9322b47aab3acf0b3f340b, type: 3}
+          m_Scale: {x: 9, y: 9}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
-          m_Texture: {fileID: 2800000, guid: 67b72fa7cadda734690493e1e4bf0569, type: 3}
-          m_Scale: {x: 4, y: 24}
+          m_Texture: {fileID: 2800000, guid: 4cfdbee4a84c1674c808c1bfe13a6257, type: 3}
+          m_Scale: {x: 9, y: 9}
           m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
           name: _Shininess
-        second: .0590917505
+        second: .078125
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: .0316936746, g: .91911763, b: 0, a: 1}
       data:
         first:
           name: _SpecColor
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: .5, g: .5, b: .5, a: 0}
