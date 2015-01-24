@@ -1,30 +1,35 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class Spike : MonoBehaviour 
-{
-	public GameObject targetGoo;
-	void Start ()
-    {
-	    
-	}
+public
+class Spike : MonoBehaviour {
+public
 
-	void Update () 
-    {
-	
-	}
-    void FixedUpdate()
-    {
-        this.transform.Translate(new Vector3(0, 0, -10.0f) * Time.deltaTime);
+  void Start() {}
+
+  void Update() {}
+  void FixedUpdate() {
+    this.transform.Translate(new Vector3(0, 0, -10.0f) * Time.deltaTime);
+    if (transform.position.z < -20) {
+      Destroy(gameObject);
     }
+  }
 
-    void OnTriggerEnter(Collider collider)
+  void OnTriggerEnter(Collider collider)
+  {
+    if (collider.gameObject.tag.ToString() == "GooBall")
     {
-        if (collider.gameObject.tag.ToString() == "GooBall")
-        {
-            FindObjectOfType<TheManager>().SplitGooBall(collider.gameObject);
-            Debug.Log("Spiked");
-            Destroy(gameObject);
-        }
+      Debug.Log("Spiked");
+      FindObjectOfType<TheManager>().SplitGooBall(collider.gameObject);
+      //Invalidate any other knived heading for this ball.
+      List<GameObject> knives =collider.gameObject.GetComponent<GooBall>().Knives;
+      for (int i = 0; i < knives.Count; ++i)
+      {
+        Destroy(knives[i]);
+      }
+
+      Destroy(gameObject);
     }
+  }
 }
