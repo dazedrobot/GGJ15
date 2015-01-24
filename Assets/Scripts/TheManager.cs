@@ -6,7 +6,6 @@ public class TheManager : MonoBehaviour
 {
     //things that need to be draggy dropped:
     public GameObject g_gooBallPrefab;
-    public GameObject LaneRendererObj;
     public GameObject SpikePrefab;
     public GameObject MergerPrefab;
     public GameObject Road;
@@ -15,8 +14,6 @@ public class TheManager : MonoBehaviour
     public GameObject g_gooBallContainer;
     public Stack<GameObject> g_gooBallsPool;
     public List<GameObject> g_gooBalls;
-  
-    private LaneRenderer LR;
     
     void Start () 
     {
@@ -32,8 +29,7 @@ public class TheManager : MonoBehaviour
         g_gooBalls.Add(g_gooBallsPool.Pop());
         g_gooBalls[0].SetActive(true);
         g_gooBalls[0].transform.position = new Vector3(0.0f, g_gooBalls[0].transform.localScale.x * 0.5f, 0.0f);
-        LR = LaneRendererObj.GetComponent<LaneRenderer>();
-        LR.Process ();
+        UpdatePositions();
     }
 
     void Update () 
@@ -58,10 +54,11 @@ public class TheManager : MonoBehaviour
         go.transform.localScale /= 2.0f;
         g_gooBalls[index].transform.localScale = go.transform.localScale;
         // Reposition
-        float halfscale = go.transform.localScale.x / 2.0f;
-        g_gooBalls[index].transform.position = go.transform.position - new Vector3(halfscale, halfscale, 0.0f);
-        go.transform.position += new Vector3(halfscale, -halfscale, 0.0f);
-        LR.Process ();
+        g_gooBalls[index].transform.position = go.transform.position;
+       // float halfscale = go.transform.localScale.x / 2.0f;
+       // g_gooBalls[index].transform.position = go.transform.position - new Vector3(halfscale, halfscale, 0.0f);
+       // go.transform.position += new Vector3(halfscale, -halfscale, 0.0f);
+        UpdatePositions();
     }
 
     public void MergeGooBall(GameObject small, GameObject large)
@@ -76,7 +73,7 @@ public class TheManager : MonoBehaviour
         small.SetActive (false);
         g_gooBallsPool.Push (small);
         g_gooBalls.RemoveAt (g_gooBalls.IndexOf (small));
-        LR.Process();
+        UpdatePositions();
     }
 
     private struct intTouple{
@@ -129,12 +126,12 @@ public class TheManager : MonoBehaviour
 
     public void UpdatePositions()
     {
-        Vector3 pos = Road.transform.position;
         float currentPos = Road.transform.position.x - ((Road.transform.localScale.x * 10.0f) / 2.0f);
         for (int i = 0; i < g_gooBalls.Count; ++i)
         {
             float scale = g_gooBalls[i].transform.localScale.x*0.5f;
             g_gooBalls[i].GetComponent<GooBall>().TargetPosition = (new Vector3(currentPos + scale, scale, 0));
+            g_gooBalls[i].GetComponent<GooBall>().Move();
             currentPos += scale * 2.0f;
         }
     }
