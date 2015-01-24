@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   road: {fileID: 163804}
-  Goos: []
+  Manager: {fileID: 0}
   Lines: []
   LinePrefab: {fileID: 157150, guid: 20d5ef13d277a99438552677ba5f4e40, type: 2}
 --- !u!1001 &100100000
