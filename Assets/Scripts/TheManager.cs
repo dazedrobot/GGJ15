@@ -47,6 +47,24 @@ public class TheManager : MonoBehaviour
         g_gooBalls[index].transform.position = go.transform.position - new Vector3(go.transform.localScale.x / 2.0f, 0.0f, 0.0f);
         go.transform.position += new Vector3(go.transform.localScale.x / 2.0f, 0.0f, 0.0f);
 		LR.Process ();
-        
+	}
+
+	public void MakeSpike()
+	{
+		for (int i = 0; i < g_gooBalls.Count; ++i)
+		{
+			//check above
+			if(i>0){
+				if(g_gooBalls[i-1].transform.localScale ==0){
+					
+				}
+			}
+			//check below
+			if(i<g_gooBalls.Count){
+				if(g_gooBalls[i+1].transform.localScale ==0){
+				
+				}
+			}
+		}
 	}
 }
