@@ -118,11 +118,6 @@ public class GooInput : MonoBehaviour
 					ballComponent.Phase();
 				}
 			}
-
-
-			if (Input.GetButtonDown ("Cancel")) {
-				selectedInput = "";
-			}
 		}
 
 	}
