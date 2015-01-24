@@ -38,6 +38,7 @@ public class GooInput : MonoBehaviour
 	public string selectedInput = "";
 
 	private GooBall ballComponent;
+	private bool isAxisDown = false;
 
 	// Use this for initialization
 	void Start ()
@@ -83,17 +84,14 @@ public class GooInput : MonoBehaviour
 					string axisName = axisSplit [0];
 					bool axisPositive = axisSplit [1] == "+";
 					float axisInput = Input.GetAxis (axisName);
-					if (axisInput > 0.5f && axisPositive) {
+					if (((axisInput > 0.5f && axisPositive) || (axisInput < -0.5f && !axisPositive))) {
+						isAxisDown = true;
 						selectedInput = axisDirName;
 						isAxis = true;
 						axisAvailable [axisDirName] = false;
 						return;
-
-					} else if (axisInput < -0.5f && !axisPositive) {
-						selectedInput = axisDirName;
-						isAxis = true;
-						axisAvailable [axisDirName] = false;
-						return;
+					}
+					else {
 
 					}
 				}
@@ -106,8 +104,12 @@ public class GooInput : MonoBehaviour
 				string axisName = axisSplit [0];
 				bool axisPositive = axisSplit [1] == "+";
 				float axisInput = Input.GetAxis (axisName);
-				if ((axisInput > 0.5f && axisPositive) || (axisInput < -0.5f && !axisPositive)) {
+				if (((axisInput > 0.5f && axisPositive) || (axisInput < -0.5f && !axisPositive)) && !isAxisDown) {
+					isAxisDown = true;
 					ballComponent.Phase();
+				}
+				else if (((axisInput <= 0.5f && axisPositive) || (axisInput >= -0.5f && !axisPositive)) && isAxisDown) {
+					isAxisDown = false;
 				}
 
 			}
