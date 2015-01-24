@@ -13,7 +13,7 @@ public class Spike : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        transform.localScale = new Vector3(targetGoo.TargetScale.x * 0.5f, 5, targetGoo.TargetScale.z * 0.25f);
+        transform.localScale = new Vector3(targetGoo.TargetScale.x * 0.5f, targetGoo.TargetScale.y*0.5f, targetGoo.TargetScale.z * 0.25f);
         transform.position = new Vector3(targetGoo.transform.position.x, transform.position.y, transform.position.z);
     }
 

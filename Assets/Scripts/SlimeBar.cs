@@ -8,7 +8,7 @@ public class SlimeBar : MonoBehaviour
 
 	void Start () 
     {
-       g_slimeSlider.value = 100.0f;
+       g_slimeSlider.value = 10.0f;
 	}
 
     public void DisplayRemainingLife(float life)

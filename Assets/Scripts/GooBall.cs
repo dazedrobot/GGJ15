@@ -93,14 +93,12 @@ public class GooBall : MonoBehaviour
 
     public void Move(Vector3 Position)
     {
-		Debug.Log("Move - " + Position);
         TargetPosition = Position;
         lerpStartTime = Time.time;
         lerpStartPos = transform.position;
     }
     public void MoveNow(Vector3 Position)
     {
-		Debug.Log("MoveNow");
         TargetPosition = Position;
         transform.position = Position;
     }
@@ -122,7 +120,7 @@ public class GooBall : MonoBehaviour
 		BallRenderer.renderer.material.color = new Color(0.5f, 0.0f, 0.5f, 0.8f);
 	}
     private void UpdateLanes(){
-        laneLineRenderer.SetPosition(0, new Vector3(transform.position.x + transform.localScale.x * 0.5f, 1, -20));
-        laneLineRenderer.SetPosition(1, new Vector3(transform.position.x + transform.localScale.x * 0.5f, 1, 20));
+		laneLineRenderer.SetPosition(0, new Vector3(transform.position.x + transform.localScale.x * 0.5f, 1, TheManager.GOOSTARTZ - 10.0f));
+		laneLineRenderer.SetPosition(1, new Vector3(transform.position.x + transform.localScale.x * 0.5f, 1, TheManager.Road.transform.position.z+TheManager.Road.transform.localScale.z*5.0f));
     }
 }

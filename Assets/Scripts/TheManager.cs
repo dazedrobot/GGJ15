@@ -8,16 +8,22 @@ public class TheManager : MonoBehaviour
     public GameObject g_gooBallPrefab;
     public GameObject SpikePrefab;
     public GameObject MergerPrefab;
-    public GameObject Road;
+    public static GameObject Road;
+	public GameObject Road2;
     //
     public static int g_numGoo = 128;
     public GameObject g_gooBallContainer;
     public Stack<GameObject> g_gooBallsPool;
     public List<GameObject> g_gooBalls;
     public GameObject g_slimeBar;
+
+	public static float GOOSTARTZ = -20.0f;
     
     void Start () 
     {
+		Road = Road2;
+
+        //create stack of unused goo
         g_gooBallContainer = new GameObject("GooBallContainer");
         g_gooBallsPool = new Stack<GameObject>();
         for (int i = 0; i < g_numGoo; ++i)
@@ -27,9 +33,11 @@ public class TheManager : MonoBehaviour
             go.SetActive(false);
             g_gooBallsPool.Push(go);
         }
+
+        //Create the initial Goo
         g_gooBalls.Add(g_gooBallsPool.Pop());
         g_gooBalls[0].SetActive(true);
-        g_gooBalls[0].transform.position = new Vector3(0.0f, g_gooBalls[0].transform.localScale.x * 0.5f, 0.0f);
+		g_gooBalls[0].transform.position = new Vector3(0.0f, g_gooBalls[0].transform.localScale.x * 0.5f, GOOSTARTZ);
         UpdatePositions();
     }
 
@@ -49,7 +57,6 @@ public class TheManager : MonoBehaviour
     {
         if (go.transform.localScale.x * 0.5f > 0.5f)
         {
-            Debug.Log("SplitManager");
             int index = g_gooBalls.IndexOf(go);
             g_gooBalls.Insert(index, g_gooBallsPool.Pop());
             GameObject newGoo = g_gooBalls[index];
@@ -87,13 +94,23 @@ public class TheManager : MonoBehaviour
 
     public void MergeGooBall(GameObject small, GameObject large)
     {
-        Debug.Log("Merging ..");
         GooBall GBlarge = large.GetComponent<GooBall>();
         GooBall GBsmall = small.GetComponent<GooBall>();
 
         //Increase the size of the larger goo
         GBlarge.Resize(GBlarge.TargetScale + GBsmall.TargetScale);
 
+        //Delete any spikes or mergers heading for the soon to be deleted goo
+        for (int i = 0; i < GBsmall.Knives.Count; ++i)
+        {
+            Destroy(GBsmall.Knives[i]);
+        }
+        for (int i = 0; i < GBsmall.Mergers.Count; ++i)
+        {
+            Destroy(GBsmall.Mergers[i]);
+        }
+
+        //delete small goo.
         small.SetActive (false);
         g_gooBallsPool.Push (small);
         g_gooBalls.Remove (small);
@@ -115,7 +132,7 @@ public class TheManager : MonoBehaviour
         //Find a random target
         int r = Random.Range(0, g_gooBalls.Count);
         //Make a new spike
-        GameObject newSpike =  (GameObject)Instantiate(SpikePrefab, new Vector3(g_gooBalls [r].transform.position.x, 0, 15), Quaternion.identity);
+		GameObject newSpike =  (GameObject)Instantiate(SpikePrefab, new Vector3(g_gooBalls [r].transform.position.x, g_gooBalls [r].transform.position.y, (Road.transform.position.z+Road.transform.localScale.z*5.0f)), Quaternion.identity);
         GooBall GB = g_gooBalls[r].GetComponent<GooBall>();
         //make it the spike the same size of the goo
         newSpike.transform.localScale = new Vector3(GB.TargetScale.x * 0.5f, 5, GB.TargetScale.z * 0.25f);
@@ -153,7 +170,7 @@ public class TheManager : MonoBehaviour
         //pick a random pair
         int r = Random.Range(0, things.Count);
         //make a merger
-        GameObject newMerger =  (GameObject)Instantiate(MergerPrefab, new Vector3(g_gooBalls [things [r].x].transform.position.x, 0, 15), Quaternion.identity);
+		GameObject newMerger =  (GameObject)Instantiate(MergerPrefab, new Vector3(g_gooBalls [things [r].x].transform.position.x, g_gooBalls [things [r].x].transform.position.y, (Road.transform.position.z+Road.transform.localScale.z*5.0f)), Quaternion.identity);
         //make the merger the size of the small goo
         newMerger.transform.localScale = new Vector3(g_gooBalls[things[r].x].transform.localScale.x * 0.5f, 5, g_gooBalls[things[r].x].transform.localScale.z * 0.25f);
         //point the merger target to the big goo.
@@ -172,7 +189,7 @@ public class TheManager : MonoBehaviour
         {
             GooBall GB = g_gooBalls[i].GetComponent<GooBall>();
             float scale = GB.TargetScale.x * 0.5f;
-            GB.Move(new Vector3(currentPos + scale, scale, 0));
+			GB.Move(new Vector3(currentPos + scale, scale, GOOSTARTZ));
             currentPos += scale * 2.0f;
         }
     }
