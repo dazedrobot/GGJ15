@@ -62,9 +62,22 @@ public class GooInput : MonoBehaviour
 			}
 			foreach (string axisDirName in axisAvailable.Keys) {
 				var axisSplit = axisDirName.Split(':');
-				string axisName = axisDirName[0];
-				string axisDir =  axisSplit[1];
-				if (Input.GetAxis(axisName)){
+				string axisName = axisSplit[0];
+				bool axisPositive = axisSplit[1] == "+";
+				float axisInput = Input.GetAxis(axisName);
+				if (axisInput > 0.5f && axisPositive){
+					selectedInput = axisDirName;
+					isAxis = true;
+					axisAvailable[axisDirName] = false;
+					return;
+
+				}
+				else if (axisInput < -0.5 && !axisPositive) {
+					selectedInput = axisDirName;
+					isAxis = true;
+					axisAvailable[axisDirName] = false;
+					return;
+
 				}
 			}
 
