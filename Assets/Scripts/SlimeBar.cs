@@ -4,15 +4,15 @@ using UnityEngine.UI;
 
 public class SlimeBar : MonoBehaviour 
 {
-    public Slider slimeSlider;
+    public Slider g_slimeSlider;
 
 	void Start () 
     {
-        slimeSlider.value = 1;
+       g_slimeSlider.value = 10.0f;
 	}
-	
-	void Update ()
+
+    public void DisplayRemainingLife(float life)
     {
-        slimeSlider.value += 10 * Time.smoothDeltaTime;
-	}
+        g_slimeSlider.value = life;
+    }
 }

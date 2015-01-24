@@ -52,8 +52,8 @@ LineRenderer:
   - {x: 0, y: 1, z: -20}
   - {x: 0, y: 1, z: 20}
   m_Parameters:
-    startWidth: .200000003
-    endWidth: .200000003
+    startWidth: .100000001
+    endWidth: .100000001
     m_StartColor:
       serializedVersion: 2
       rgba: 4294967295
