@@ -25,21 +25,23 @@ public class Merger : MonoBehaviour
     {
         if (collider.gameObject.tag.ToString() == "GooBall")
         {
-            FindObjectOfType<TheManager>().MergeGooBall(collider.gameObject, g_largeGooBall);
-            Debug.Log("Merged");
-            //Invalidate any other knived heading for this ball.
-            List<GameObject> mergers = collider.gameObject.GetComponent<GooBall>().Mergers;
-            for (int i = 0; i < mergers.Count; ++i)
+            if (collider.GetComponent<GooBall>().g_phase == true)
             {
-                Destroy(mergers[i]);
+                FindObjectOfType<TheManager>().MergeGooBall(collider.gameObject, g_largeGooBall);
+                Debug.Log("Merged");
+                //Invalidate any other knived heading for this ball.
+                List<GameObject> mergers = collider.gameObject.GetComponent<GooBall>().Mergers;
+                for (int i = 0; i < mergers.Count; ++i)
+                {
+                    Destroy(mergers[i]);
+                }
+                mergers = g_largeGooBall.GetComponent<GooBall>().Mergers;
+                for (int i = 0; i < mergers.Count; ++i)
+                {
+                    Destroy(mergers[i]);
+                }
+                Destroy(gameObject);
             }
-            mergers = g_largeGooBall.GetComponent<GooBall>().Mergers;
-            for (int i = 0; i < mergers.Count; ++i)
-            {
-                Destroy(mergers[i]);
-            }
-
-            Destroy(gameObject);
         }
     }
 }
