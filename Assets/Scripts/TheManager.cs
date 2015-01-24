@@ -103,40 +103,56 @@ public class TheManager : MonoBehaviour
 
     public void MakeSpike()
     {
+        //Find a random target
         int r = Random.Range(0, g_gooBalls.Count);
+        //Make a new spike
         GameObject newSpike =  (GameObject)Instantiate(SpikePrefab, new Vector3(g_gooBalls [r].transform.position.x, 0, 15), Quaternion.identity);
-        newSpike.transform.localScale = new Vector3(g_gooBalls[r].transform.localScale.x * 0.5f, 5, g_gooBalls[r].transform.localScale.z * 0.25f);
-        g_gooBalls[r].GetComponent<GooBall>().Knives.Add(newSpike);
+        GooBall GB = g_gooBalls[r].GetComponent<GooBall>();
+        //make it the spike the same size of the goo
+        newSpike.transform.localScale = new Vector3(GB.TargetScale.x * 0.5f, 5, GB.TargetScale.z * 0.25f);
+        //Tell the Goo about the incomming knive
+        GB.Knives.Add(newSpike);
+        //Tell the knive who to target.
+        newSpike.GetComponent<Spike>().targetGoo = GB;
     }
 
     public void MakeMerger()
     {
+        //Get a list of comaptacble merge pairs.
         List<intTouple> things = new List<intTouple>();
         for (int i = 0; i < g_gooBalls.Count; ++i)
         {
+            GooBall GB1 = g_gooBalls[i].GetComponent<GooBall>();
             //check above
             if(i>0){
-                if(g_gooBalls[i-1].transform.localScale.x >= g_gooBalls[i].transform.localScale.x){
+                if (g_gooBalls[i - 1].GetComponent<GooBall>().TargetScale.x >= GB1.TargetScale.x)
+                {
                     things.Add(new intTouple(i, i-1));
                 }
             }
             //check below
             if(i<g_gooBalls.Count-1){
-                if(g_gooBalls[i+1].transform.localScale.x >= g_gooBalls[i].transform.localScale.x){
+                if (g_gooBalls[i + 1].GetComponent<GooBall>().TargetScale.x >= GB1.TargetScale.x)
+                {
                     things.Add(new intTouple(i, i+1));
                 }
             }
         }
         if (things.Count < 1) {
-            print("No availaible space for merger");
             return;		
         }
-        int r = Random.Range(0, things.Count-1);
+        //pick a random pair
+        int r = Random.Range(0, things.Count);
+        //make a merger
         GameObject newMerger =  (GameObject)Instantiate(MergerPrefab, new Vector3(g_gooBalls [things [r].x].transform.position.x, 0, 15), Quaternion.identity);
-        newMerger.GetComponent<Merger>().g_largeGooBall = g_gooBalls[things[r].y];
+        //make the merger the size of the small goo
         newMerger.transform.localScale = new Vector3(g_gooBalls[things[r].x].transform.localScale.x * 0.5f, 5, g_gooBalls[things[r].x].transform.localScale.z * 0.25f);
+        //point the merger target to the big goo.
+        newMerger.GetComponent<Merger>().g_largeGooBall = g_gooBalls[things[r].y];
+        //tell the merger about which goo to head for
+        newMerger.GetComponent<Merger>().g_smallGooBall = g_gooBalls[things[r].x].GetComponent<GooBall>();
+        //tell the small goo about the incomming merger.
         g_gooBalls[things[r].x].GetComponent<GooBall>().Mergers.Add(newMerger);
-        g_gooBalls[things[r].y].GetComponent<GooBall>().Mergers.Add(newMerger);
     }
 
     public void UpdatePositions()
