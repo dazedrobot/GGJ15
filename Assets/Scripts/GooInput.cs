@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class GooInput : MonoBehaviour
 {
 
-	public static Dictionary<string, bool> buttonAvailable = {
+	public static Dictionary<string, bool> buttonAvailable = new Dictionary<string, bool>{
 		{"ButtonA"  , true},
 		{"ButtonB"  , true},
 		{"ButtonX"  , true},
@@ -23,7 +23,16 @@ public class GooInput : MonoBehaviour
 	
 	};
 
-	public static
+	public static Dictionary<string, bool> axisAvailable = new Dictionary<string, bool>{
+		{"LVertical:-"  , true},
+		{"LVertical:+"  , true},
+		{"LHorizontal:-", true},
+		{"LHorizontal:+", true},
+		{"RVertical:-"  , true},
+		{"RVertical:+"  , true},
+		{"RHorizontal:-", true},
+		{"RHorizontal:+", true},
+	};
 
 	bool isAxis = true;
 	string selectedInput = "";
@@ -49,6 +58,13 @@ public class GooInput : MonoBehaviour
 					isAxis = false;
 					buttonAvailable[buttonName] = false;
 					return;
+				}
+			}
+			foreach (string axisDirName in axisAvailable.Keys) {
+				var axisSplit = axisDirName.Split(':');
+				string axisName = axisDirName[0];
+				string axisDir =  axisSplit[1];
+				if (Input.GetAxis(axisName)){
 				}
 			}
 
