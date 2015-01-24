@@ -20,7 +20,7 @@ public class TheManager : MonoBehaviour
         g_gooBallsPool = new Stack<GameObject>();
         for (int i = 0; i < g_numGoo; ++i)
         {
-            GameObject go = Instantiate(g_gooBallPrefab, new Vector3((float)i, 0.0f, 0.0f), Quaternion.identity) as GameObject;
+            GameObject go = Instantiate(g_gooBallPrefab, new Vector3((float)i, 0.0f, 0.0f), g_gooBallPrefab.transform.localRotation) as GameObject;
             go.transform.SetParent(g_gooBallContainer.transform);
             go.SetActive(false);
             g_gooBallsPool.Push(go);

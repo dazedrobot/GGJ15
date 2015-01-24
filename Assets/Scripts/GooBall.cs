@@ -44,4 +44,9 @@ public class GooBall : MonoBehaviour
             }
         }
 	}
+
+    void FixedUpdate()
+    {
+        transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), -40.0f * (10.0f / transform.localScale.x) * Time.deltaTime);
+    }
 }
