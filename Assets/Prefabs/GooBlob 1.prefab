@@ -8,9 +8,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 413762}
-  - 54: {fileID: 5429974}
   - 136: {fileID: 13629974}
   - 114: {fileID: 11465062}
+  - 54: {fileID: 5427960}
   m_Layer: 0
   m_Name: GooBlob 1
   m_TagString: GooBall
@@ -88,20 +88,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 113764}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &5429974
+--- !u!54 &5427960
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 113762}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 1.00000001e-07
   m_Drag: 0
   m_AngularDrag: .0500000007
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 90
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &11465062
 MonoBehaviour:
@@ -116,6 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Knives: []
   Mergers: []
+  BallRenderer: {fileID: 113764}
   g_phase: 0
 --- !u!114 &11478830
 MonoBehaviour:

@@ -27,7 +27,7 @@ public class TheManager : MonoBehaviour
         }
         g_gooBalls.Add(g_gooBallsPool.Pop());
         g_gooBalls[0].SetActive(true);
-        g_gooBalls[0].transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+        g_gooBalls[0].transform.position = new Vector3(0.0f, g_gooBalls[0].transform.localScale.x * 0.5f, 0.0f);
         LR = LaneRendererObj.GetComponent<LaneRenderer>();
         LR.Process ();
     }
@@ -54,8 +54,9 @@ public class TheManager : MonoBehaviour
         go.transform.localScale /= 2.0f;
         g_gooBalls[index].transform.localScale = go.transform.localScale;
         // Reposition
-        g_gooBalls[index].transform.position = go.transform.position - new Vector3(go.transform.localScale.x / 2.0f, 0.0f, 0.0f);
-        go.transform.position += new Vector3(go.transform.localScale.x / 2.0f, 0.0f, 0.0f);
+        float halfscale = go.transform.localScale.x / 2.0f;
+        g_gooBalls[index].transform.position = go.transform.position - new Vector3(halfscale, halfscale, 0.0f);
+        go.transform.position += new Vector3(halfscale, -halfscale, 0.0f);
         LR.Process ();
     }
 
@@ -63,10 +64,11 @@ public class TheManager : MonoBehaviour
     {
         Debug.Log("Merging ..");
         large.transform.localScale += small.transform.localScale;
+        float halfscale = small.transform.localScale.x * 0.5f;
         if (large.transform.position.x > small.transform.position.x)
-                large.transform.position -= new Vector3 (small.transform.localScale.x * 0.5f, 0.0f, 0.0f);
+            large.transform.position -= new Vector3(halfscale, -halfscale, 0.0f);
         else
-                large.transform.position += new Vector3 (small.transform.localScale.x * 0.5f, 0.0f, 0.0f);
+            large.transform.position += new Vector3(halfscale, halfscale, 0.0f);
         small.SetActive (false);
         g_gooBallsPool.Push (small);
         g_gooBalls.RemoveAt (g_gooBalls.IndexOf (small));
@@ -85,7 +87,7 @@ public class TheManager : MonoBehaviour
 
     public void MakeSpike()
     {
-        int r = Random.Range(0, g_gooBalls.Count-1);
+        int r = Random.Range(0, g_gooBalls.Count);
         GameObject newSpike =  (GameObject)Instantiate(SpikePrefab, new Vector3(g_gooBalls [r].transform.position.x, 0, 15), Quaternion.identity);
         newSpike.transform.localScale = new Vector3(g_gooBalls[r].transform.localScale.x * 0.5f, 5, g_gooBalls[r].transform.localScale.z * 0.25f);
         g_gooBalls[r].GetComponent<GooBall>().Knives.Add(newSpike);
