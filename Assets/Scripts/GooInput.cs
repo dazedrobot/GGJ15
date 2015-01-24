@@ -9,11 +9,7 @@ public class GooInput : MonoBehaviour
 		{"ButtonA"  , true},
 		{"ButtonB"  , true},
 		{"ButtonX"  , true},
-		{"ButtonY"  , true}, 
-		{"DPadUp"   , true},
-		{"DPadLeft" , true},
-		{"DPadRight", true},
-		{"DPadDown" , true},
+		{"ButtonY"  , true},
 		{"ShoulderL", true},
 		{"ShoulderR", true},
 		{"ThumbL"   , true},
@@ -22,7 +18,6 @@ public class GooInput : MonoBehaviour
 		{"Start"    , true},
 	
 	};
-
 	public static Dictionary<string, bool> axisAvailable = new Dictionary<string, bool>{
 		{"LVertical:-"  , true},
 		{"LVertical:+"  , true},
@@ -34,8 +29,11 @@ public class GooInput : MonoBehaviour
 		{"RHorizontal:+", true},
 		{"Triggers:-", true},
 		{"Triggers:+", true},
+		{"DPadH:-", true},
+		{"DPadH:+", true},
+		{"DPadV:-", true},
+		{"DPadV:+", true},
 	};
-
 	public bool isAxis = true;
 	public string selectedInput = "";
 
@@ -45,7 +43,8 @@ public class GooInput : MonoBehaviour
 	
 	}
 
-	void OnEnable() {
+	void OnEnable ()
+	{
 		isAxis = true;
 		selectedInput = "";
 	}
@@ -54,34 +53,35 @@ public class GooInput : MonoBehaviour
 	void Update ()
 	{
 //		if (selectedInput == "") {
-			foreach (string buttonName in buttonAvailable.Keys) {
-				if (buttonAvailable[buttonName] && Input.GetButtonDown(buttonName)) {
-					selectedInput = buttonName;
-					isAxis = false;
-					buttonAvailable[buttonName] = false;
-					return;
-				}
+		foreach (string buttonName in buttonAvailable.Keys) {
+			if (buttonAvailable [buttonName] && Input.GetButtonDown (buttonName)) {
+				selectedInput = buttonName;
+				isAxis = false;
+				buttonAvailable[buttonName] = false;
+				return;
 			}
-			foreach (string axisDirName in axisAvailable.Keys) {
-				var axisSplit = axisDirName.Split(':');
-				string axisName = axisSplit[0];
-				bool axisPositive = axisSplit[1] == "+";
-				float axisInput = Input.GetAxis(axisName);
-				if (axisInput > 0.5f && axisPositive){
+		}
+		foreach (string axisDirName in axisAvailable.Keys) {
+			if (axisAvailable[axisDirName]) {
+				var axisSplit = axisDirName.Split (':');
+				string axisName = axisSplit [0];
+				bool axisPositive = axisSplit [1] == "+";
+				float axisInput = Input.GetAxis (axisName);
+				if (axisInput > 0.5f && axisPositive) {
 					selectedInput = axisDirName;
 					isAxis = true;
-					axisAvailable[axisDirName] = false;
+					axisAvailable [axisDirName] = false;
+					return;
+
+				} else if (axisInput < -0.5 && !axisPositive) {
+					selectedInput = axisDirName;
+					isAxis = true;
+					axisAvailable [axisDirName] = false;
 					return;
 
 				}
-				else if (axisInput < -0.5 && !axisPositive) {
-					selectedInput = axisDirName;
-					isAxis = true;
-					axisAvailable[axisDirName] = false;
-					return;
-
-				}
 			}
+		}
 
 //		} else {
 //			// trigger jump here.
