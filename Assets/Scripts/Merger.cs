@@ -17,6 +17,7 @@ public class Merger : MonoBehaviour
 
     void OnTriggerEnter(Collider smallGooBall)
     {
+		Debug.Log("Enter collision");
         if (collider.gameObject.tag.ToString() == "GooBall")
         {
             FindObjectOfType<TheManager>().MergeGooBall(smallGooBall.gameObject, g_largeGooBall);

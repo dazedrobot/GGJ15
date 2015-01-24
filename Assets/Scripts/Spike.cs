@@ -19,7 +19,7 @@ public class Spike : MonoBehaviour
         if (collider.gameObject.tag.ToString() == "GooBall")
         {
             FindObjectOfType<TheManager>().SplitGooBall(collider.gameObject);
-            Debug.Log("MARGE");
+            Debug.Log("Spiked");
         }
     }
 }

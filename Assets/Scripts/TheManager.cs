@@ -35,7 +35,11 @@ public class TheManager : MonoBehaviour
 
 	void Update () 
 	{
-	
+		if (Input.GetKeyDown (KeyCode.M)) 
+		{
+			print("KEypressed");
+			MakeMerger();
+		}
 	}
 
 	public void SplitGooBall(GameObject go)
@@ -55,6 +59,7 @@ public class TheManager : MonoBehaviour
 
 	public void MergeGooBall(GameObject small, GameObject large)
 	{
+		Debug.Log("Merging ..");
 		large.transform.localScale += small.transform.localScale;
 		if (transform.position.x > 0)
 				large.transform.position += new Vector3 (small.transform.localScale.x * 0.5f, 0.0f, 0.0f);
@@ -82,28 +87,29 @@ public class TheManager : MonoBehaviour
 	}
 
 	public void MakeMerger()
-	{/*
+	{
 		List<intTouple> things = new List<intTouple>();
 		for (int i = 0; i < g_gooBalls.Count; ++i)
 		{
 			//check above
 			if(i>0){
-				if(g_gooBalls[i-1].transform.localScale.x == 0){
+				if(g_gooBalls[i-1].transform.localScale.x >= g_gooBalls[i].transform.localScale.x){
 					things.Add(new intTouple(i, i-1));
 				}
 			}
 			//check below
 			if(i<g_gooBalls.Count-1){
-				if(g_gooBalls[i+1].transform.localScale.x == 0){
+				if(g_gooBalls[i+1].transform.localScale.x >= g_gooBalls[i].transform.localScale.x){
 					things.Add(new intTouple(i, i+1));
 				}
 			}
 		}
 		if (things.Count < 1) {
+			print("No availaible space for merger");
 			return;		
 		}
 		int r = Random.Range(0, things.Count-1);
-		GameObject newMerger =  (GameObject)Instantiate(MergerPrefab, new Vector3(g_gooBalls [things [r].x].transform.position.x, 15, 0), Quaternion.identity);
-		newSpike.GetComponent<Merger>().targetGoo = g_gooBalls[things[r].y];*/
+		GameObject newMerger =  (GameObject)Instantiate(MergerPrefab, new Vector3(g_gooBalls [things [r].x].transform.position.x, 0, 15), Quaternion.identity);
+		newMerger.GetComponent<Merger>().g_largeGooBall = g_gooBalls[things[r].y];
 	}
 }
