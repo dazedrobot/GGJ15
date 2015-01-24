@@ -14,6 +14,7 @@ public class TheManager : MonoBehaviour
     public GameObject g_gooBallContainer;
     public Stack<GameObject> g_gooBallsPool;
     public List<GameObject> g_gooBalls;
+    public GameObject g_slimeBar;
     
     void Start () 
     {
@@ -72,6 +73,14 @@ public class TheManager : MonoBehaviour
             go.SetActive(false);
             g_gooBallsPool.Push(go);
             g_gooBalls.Remove(go);
+
+            float temp = 0.0f;
+            for (int i = 0; i < g_gooBalls.Count; ++i )
+            {
+                temp += g_gooBalls[i].transform.localScale.x;
+            }
+            Debug.Log("Display Re");
+            g_slimeBar.GetComponent<SlimeBar>().DisplayRemainingLife(temp);
         }
         UpdatePositions();
     }

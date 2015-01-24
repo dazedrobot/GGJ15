@@ -98,11 +98,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_gooBallPrefab: {fileID: 113762, guid: cf6351c0b16f843488fec9cafb2575c5, type: 2}
-  g_gooBallContainer: {fileID: 0}
-  g_gooBalls: []
-  LaneRendererObj: {fileID: 163806, guid: 6421aaa4f6764a144b45e4c67c5ba106, type: 2}
   SpikePrefab: {fileID: 116854, guid: dbd724bdcc0027a4b89242f00f62cd4a, type: 2}
   MergerPrefab: {fileID: 181786, guid: 4332333546833c9478c9144ab14dd3a2, type: 2}
+  Road: {fileID: 181696, guid: 6421aaa4f6764a144b45e4c67c5ba106, type: 2}
+  g_gooBallContainer: {fileID: 0}
+  g_gooBalls: []
+  g_slimeBar: {fileID: 0}
 --- !u!135 &13524388
 SphereCollider:
   m_ObjectHideFlags: 1
