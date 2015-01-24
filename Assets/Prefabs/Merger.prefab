@@ -13,7 +13,7 @@ GameObject:
   - 23: {fileID: 2381786}
   - 54: {fileID: 5481786}
   - 114: {fileID: 11481786}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Merger
   m_TagString: Merger
   m_Icon: {fileID: 0}
@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_largeGooBall: {fileID: 0}
+  g_smallGooBall: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

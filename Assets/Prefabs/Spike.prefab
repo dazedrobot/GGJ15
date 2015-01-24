@@ -13,7 +13,7 @@ GameObject:
   - 23: {fileID: 2316854}
   - 54: {fileID: 5485198}
   - 114: {fileID: 11426612}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spike
   m_TagString: Spike
   m_Icon: {fileID: 0}
