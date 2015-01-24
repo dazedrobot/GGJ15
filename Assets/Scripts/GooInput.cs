@@ -104,7 +104,6 @@ public class GooInput : MonoBehaviour
 				string axisName = axisSplit [0];
 				bool axisPositive = axisSplit [1] == "+";
 				float axisInput = Input.GetAxis (axisName);
-				Debug.Log(isAxisDown);
 				if (((axisInput > 0.5f && axisPositive) || (axisInput < -0.5f && !axisPositive)) && !isAxisDown) {
 					isAxisDown = true;
 					ballComponent.Phase();
