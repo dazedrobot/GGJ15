@@ -44,14 +44,21 @@ public class TheManager : MonoBehaviour
         go.transform.localScale /= 2.0f;
 		g_gooBalls[index].transform.localScale = go.transform.localScale;
         // Reposition
-        g_gooBalls[index].transform.position = go.transform.position - new Vector3(go.transform.localScale.x / 2.0f, 0.0f, 0.0f);
-        go.transform.position += new Vector3(go.transform.localScale.x / 2.0f, 0.0f, 0.0f);
+        g_gooBalls[index].transform.position = go.transform.position - new Vector3(go.transform.localScale.x / 0.5f, 0.0f, 0.0f);
+        go.transform.position += new Vector3(go.transform.localScale.x * 0.5f, 0.0f, 0.0f);
 		LR.Process ();
 	}
 
-    public void MergeGooBall(GameObject go)
-    { 
-        
+    public void MergeGooBall(GameObject small, GameObject large)
+    {
+        large.transform.localScale += small.transform.localScale;
+        if (transform.position.x > 0)
+            large.transform.position += new Vector3(small.transform.localScale.x * 0.5f, 0.0f, 0.0f);
+        else
+            large.transform.position -= new Vector3(small.transform.localScale.x * 0.5f, 0.0f, 0.0f);
+        small.SetActive(false);
+        g_gooBallsPool.Push(small);
+        g_gooBalls.RemoveAt(g_gooBalls.IndexOf(small));
     }
 
 	/*public void MakeSpike()

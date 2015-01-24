@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Merger : MonoBehaviour 
 {
+    public GameObject g_largeGooBall;
+
 	void Start ()
     {
 	    
@@ -13,12 +15,12 @@ public class Merger : MonoBehaviour
 	    
 	}
 
-    void OnTriggerEnter(Collider collider)
+    void OnTriggerEnter(Collider smallGooBall)
     {
         if (collider.gameObject.tag.ToString() == "GooBall")
         {
-            FindObjectOfType<TheManager>().MergeGooBall(collider.gameObject);
-            Debug.Log("SPLIT");
+            FindObjectOfType<TheManager>().MergeGooBall(smallGooBall.gameObject, g_largeGooBall);
+            Debug.Log("MARGE");
         }
     }
 }
