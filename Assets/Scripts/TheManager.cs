@@ -53,6 +53,18 @@ public class TheManager : MonoBehaviour
 		LR.Process ();
 	}
 
+	public void MergeGooBall(GameObject small, GameObject large)
+	{
+		large.transform.localScale += small.transform.localScale;
+		if (transform.position.x > 0)
+				large.transform.position += new Vector3 (small.transform.localScale.x * 0.5f, 0.0f, 0.0f);
+		else
+				large.transform.position -= new Vector3 (small.transform.localScale.x * 0.5f, 0.0f, 0.0f);
+		small.SetActive (false);
+		g_gooBallsPool.Push (small);
+		g_gooBalls.RemoveAt (g_gooBalls.IndexOf (small));
+	}
+
 	private struct intTouple{
 		public int x;
 		public int y;
