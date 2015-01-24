@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Spike : MonoBehaviour 
 {
+	public GameObject targetGoo;
 	void Start ()
     {
 	

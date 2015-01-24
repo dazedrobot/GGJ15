@@ -10,7 +10,9 @@ public class TheManager : MonoBehaviour
 	public Stack<GameObject> g_gooBallsPool;
     public List<GameObject> g_gooBalls;
 	public GameObject LaneRendererObj;
+	public GameObject SpikePrefab;
 	private LaneRenderer LR;
+	
 	void Start () 
 	{
         g_gooBallContainer = new GameObject("GooBallContainer");
@@ -49,22 +51,38 @@ public class TheManager : MonoBehaviour
 		LR.Process ();
 	}
 
+	private struct intTouple{
+		public int x;
+		public int y;
+		public intTouple(int x, int y) 
+		{
+			this.x = x;
+			this.y = y;
+		}
+	};
+
 	public void MakeSpike()
 	{
+		List<intTouple> things = new List<intTouple>();
 		for (int i = 0; i < g_gooBalls.Count; ++i)
 		{
 			//check above
 			if(i>0){
-				if(g_gooBalls[i-1].transform.localScale ==0){
-					
+				if(g_gooBalls[i-1].transform.localScale.x == 0){
+					things.Add(new intTouple(i, i-1));
 				}
 			}
 			//check below
 			if(i<g_gooBalls.Count){
-				if(g_gooBalls[i+1].transform.localScale ==0){
-				
+				if(g_gooBalls[i+1].transform.localScale.x == 0){
+					things.Add(new intTouple(i, i+1));
 				}
 			}
 		}
+		int r = Random.Range(0, things.Count);
+		GameObject newSpike =  (GameObject)Instantiate(SpikePrefab, new Vector3(g_gooBalls [things [r].x].transform.position.x, 10, 0), Quaternion.identity);
+		newSpike.GetComponent<Spike>().targetGoo = g_gooBalls[things[r].y];
+		new Spike ();
+
 	}
 }
