@@ -41,8 +41,8 @@ public class TheManager : MonoBehaviour
         go.transform.localScale /= 2.0f;
 		g_gooBalls[index].transform.localScale = go.transform.localScale;
         // Reposition
-        g_gooBalls[index].transform.position = go.transform.position + new Vector3(go.transform.localScale.x / 2.0f, 0.0f, 0.0f);
-        go.transform.position -= new Vector3(go.transform.localScale.x / 2.0f, 0.0f, 0.0f);
+        g_gooBalls[index].transform.position = go.transform.position - new Vector3(go.transform.localScale.x / 2.0f, 0.0f, 0.0f);
+        go.transform.position += new Vector3(go.transform.localScale.x / 2.0f, 0.0f, 0.0f);
         
 	}
 }
