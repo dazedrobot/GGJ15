@@ -46,18 +46,27 @@ public class TheManager : MonoBehaviour
 
     public void SplitGooBall(GameObject go)
     {
-        Debug.Log("SplitManager");
-        int index = g_gooBalls.IndexOf(go);
-        g_gooBalls.Insert(index, g_gooBallsPool.Pop());
-        g_gooBalls[index].SetActive(true);
-        // Scale
-        go.transform.localScale /= 2.0f;
-        g_gooBalls[index].transform.localScale = go.transform.localScale;
-        // Reposition
-        float halfscale = go.transform.localScale.x / 2.0f;
-        g_gooBalls[index].transform.position = go.transform.position - new Vector3(halfscale, halfscale, 0.0f);
-        go.transform.position += new Vector3(halfscale, -halfscale, 0.0f);
-        LR.Process ();
+        // SplitGood
+        if (go.transform.localScale.x * 0.5f > 0.5f)
+        {
+            int index = g_gooBalls.IndexOf(go);
+            g_gooBalls.Insert(index, g_gooBallsPool.Pop());
+            g_gooBalls[index].SetActive(true);
+            // Scale
+            go.transform.localScale /= 2.0f;
+            g_gooBalls[index].transform.localScale = go.transform.localScale;
+            // Reposition
+            float halfscale = go.transform.localScale.x / 2.0f;
+            g_gooBalls[index].transform.position = go.transform.position - new Vector3(halfscale, halfscale, 0.0f);
+            go.transform.position += new Vector3(halfscale, -halfscale, 0.0f);
+        }
+        else // Not enough goo!
+        {
+            go.SetActive(false);
+            g_gooBallsPool.Push(go);
+            g_gooBalls.Remove(go);
+        }
+        LR.Process();
     }
 
     public void MergeGooBall(GameObject small, GameObject large)
