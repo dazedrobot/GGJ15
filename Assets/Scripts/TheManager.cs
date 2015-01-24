@@ -49,7 +49,12 @@ public class TheManager : MonoBehaviour
 		LR.Process ();
 	}
 
-	public void MakeSpike()
+    public void MergeGooBall(GameObject go)
+    { 
+        
+    }
+
+	/*public void MakeSpike()
 	{
 		for (int i = 0; i < g_gooBalls.Count; ++i)
 		{
@@ -66,5 +71,5 @@ public class TheManager : MonoBehaviour
 				}
 			}
 		}
-	}
+	}*/
 }
