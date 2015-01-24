@@ -18,11 +18,6 @@ public class GooBall : MonoBehaviour
     
 	void Update () 
 	{
-		if (Input.GetMouseButtonDown (0)) 
-		{
-            g_phase = true;
-            BallRenderer.renderer.material.color = new Color(0.5f, 0.0f, 0.5f, 0.8f);
-		}
         if(g_phase == true)
             {
                 m_duration += Time.deltaTime;
@@ -42,5 +37,11 @@ public class GooBall : MonoBehaviour
                 m_duration = 0.0f;
             }
         }
+	}
+
+	public void Phase() {
+		g_phase = true;
+		BallRenderer.renderer.material.color = new Color(0.5f, 0.0f, 0.5f, 0.8f);
+
 	}
 }

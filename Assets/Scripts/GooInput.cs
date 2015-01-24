@@ -37,14 +37,25 @@ public class GooInput : MonoBehaviour
 	public bool isAxis = true;
 	public string selectedInput = "";
 
+	private GooBall ballComponent;
+
 	// Use this for initialization
 	void Start ()
 	{
-	
+		ballComponent = GetComponent<GooBall> ();
 	}
 
-	void OnEnable ()
+	void OnDisable ()
 	{
+		if (selectedInput == "") {
+			return;
+		}
+		if (isAxis) {
+			axisAvailable[selectedInput] = true;
+		}
+		else {
+			buttonAvailable[selectedInput] = true;
+		}
 		isAxis = true;
 		selectedInput = "";
 	}
@@ -73,7 +84,7 @@ public class GooInput : MonoBehaviour
 						axisAvailable [axisDirName] = false;
 						return;
 
-					} else if (axisInput < -0.5 && !axisPositive) {
+					} else if (axisInput < -0.5f && !axisPositive) {
 						selectedInput = axisDirName;
 						isAxis = true;
 						axisAvailable [axisDirName] = false;
@@ -85,6 +96,23 @@ public class GooInput : MonoBehaviour
 
 		} else {
 			// trigger jump here.
+			if (isAxis) {
+				var axisSplit = selectedInput.Split (':');
+				string axisName = axisSplit [0];
+				bool axisPositive = axisSplit [1] == "+";
+				float axisInput = Input.GetAxis (axisName);
+				if ((axisInput > 0.5f && axisPositive) || (axisInput < -0.5f && !axisPositive)) {
+					ballComponent.Phase();
+				}
+
+			}
+			else {
+				if (Input.GetButtonDown(selectedInput)) {
+					ballComponent.Phase();
+				}
+			}
+
+
 			if (Input.GetButtonDown ("Cancel")) {
 				selectedInput = "";
 			}
