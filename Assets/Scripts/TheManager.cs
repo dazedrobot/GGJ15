@@ -4,14 +4,18 @@ using System.Collections.Generic;
 
 public class TheManager : MonoBehaviour 
 {
-    public static int g_numGoo = 128;
+    //things that need to be draggy dropped:
     public GameObject g_gooBallPrefab;
-    public GameObject g_gooBallContainer;
-    public Stack<GameObject> g_gooBallsPool;
-    public List<GameObject> g_gooBalls;
     public GameObject LaneRendererObj;
     public GameObject SpikePrefab;
     public GameObject MergerPrefab;
+    public GameObject Road;
+    //
+    public static int g_numGoo = 128;
+    public GameObject g_gooBallContainer;
+    public Stack<GameObject> g_gooBallsPool;
+    public List<GameObject> g_gooBalls;
+  
     private LaneRenderer LR;
     
     void Start () 
@@ -121,5 +125,17 @@ public class TheManager : MonoBehaviour
         newMerger.transform.localScale = new Vector3(g_gooBalls[things[r].x].transform.localScale.x * 0.5f, 5, g_gooBalls[things[r].x].transform.localScale.z * 0.25f);
         g_gooBalls[things[r].x].GetComponent<GooBall>().Mergers.Add(newMerger);
         g_gooBalls[things[r].y].GetComponent<GooBall>().Mergers.Add(newMerger);
+    }
+
+    public void UpdatePositions()
+    {
+        Vector3 pos = Road.transform.position;
+        float currentPos = Road.transform.position.x - ((Road.transform.localScale.x * 10.0f) / 2.0f);
+        for (int i = 0; i < g_gooBalls.Count; ++i)
+        {
+            float scale = g_gooBalls[i].transform.localScale.x*0.5f;
+            g_gooBalls[i].GetComponent<GooBall>().TargetPosition = (new Vector3(currentPos + scale, scale, 0));
+            currentPos += scale * 2.0f;
+        }
     }
 }

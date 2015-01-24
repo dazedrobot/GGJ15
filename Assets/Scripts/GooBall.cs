@@ -7,6 +7,7 @@ public class GooBall : MonoBehaviour
     public List<GameObject> Knives;
     public List<GameObject> Mergers;
     public GameObject BallRenderer;
+    public Vector3 TargetPosition;
     public bool g_phase = false;
     private float m_duration = 0.0f;
     private float m_cooldown = 0.0f;    
