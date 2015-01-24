@@ -11,6 +11,7 @@ public class GooBall : MonoBehaviour
     public List<GameObject> Knives;
     public List<GameObject> Mergers;
     public Vector3 TargetPosition;
+    public Vector3 TargetScale;
     public bool g_phase = false;
     public float LerpTime = 1.0f;
     //
@@ -19,13 +20,20 @@ public class GooBall : MonoBehaviour
     private LineRenderer laneLineRenderer;
     private float lerpStartTime;
     private Vector3 lerpStartPos;
+    private float lerpSizeStartTime;
+    private Vector3 lerpStartSize;
     
-    void Start () 
+	void Awake(){
+		TargetScale = transform.localScale;
+		TargetPosition = transform.position;
+	}
+    
+	void Start () 
     {
         Knives = new List<GameObject>();
         Mergers = new List<GameObject>();
         laneLineRenderer = LaneLine.GetComponent<LineRenderer>();
-        Move();
+        //
         UpdateLanes();
     }
     
@@ -46,6 +54,21 @@ public class GooBall : MonoBehaviour
             }
             UpdateLanes();
         }
+        if (transform.localScale != TargetScale)
+        {
+            float lerpPercentDone = (Time.time - lerpSizeStartTime) / LerpTime;
+            //avoid rounding errors
+            if (lerpPercentDone > 1.0f)
+            {
+                transform.localScale = TargetScale;
+            }
+            else
+            {
+                transform.localScale = Vector3.Lerp(lerpStartSize, TargetScale, lerpPercentDone);
+            }
+            UpdateLanes();
+        }
+
 
         if(g_phase == true)
             {
@@ -68,10 +91,30 @@ public class GooBall : MonoBehaviour
         }
 	}
 
-    public void Move()
+    public void Move(Vector3 Position)
     {
+		Debug.Log("Move - " + Position);
+        TargetPosition = Position;
         lerpStartTime = Time.time;
         lerpStartPos = transform.position;
+    }
+    public void MoveNow(Vector3 Position)
+    {
+		Debug.Log("MoveNow");
+        TargetPosition = Position;
+        transform.position = Position;
+    }
+
+    public void Resize(Vector3 Scale)
+    {
+        TargetScale = Scale;
+        lerpSizeStartTime = Time.time;
+        lerpStartSize = transform.localScale;
+    }
+    public void ResizeNow(Vector3 Scale)
+    {
+        TargetScale = Scale;
+        transform.localScale = Scale;
     }
 
 	public void Phase() {

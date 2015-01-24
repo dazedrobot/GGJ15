@@ -46,21 +46,26 @@ public class TheManager : MonoBehaviour
 
     public void SplitGooBall(GameObject go)
     {
-
         if (go.transform.localScale.x * 0.5f > 0.5f)
         {
             Debug.Log("SplitManager");
             int index = g_gooBalls.IndexOf(go);
             g_gooBalls.Insert(index, g_gooBallsPool.Pop());
-            g_gooBalls[index].SetActive(true);
-            // Scale
-            go.transform.localScale /= 2.0f;
-            g_gooBalls[index].transform.localScale = go.transform.localScale;
-            // Reposition
-            g_gooBalls[index].transform.position = go.transform.position;
-            // float halfscale = go.transform.localScale.x / 2.0f;
-            // g_gooBalls[index].transform.position = go.transform.position - new Vector3(halfscale, halfscale, 0.0f);
-            // go.transform.position += new Vector3(halfscale, -halfscale, 0.0f);
+            GameObject newGoo = g_gooBalls[index];
+            newGoo.SetActive(true);
+
+            // Half the scale of the original goo
+            GooBall GB1 = go.GetComponent<GooBall>();
+			Vector3 targetScale = GB1.TargetScale / 2.0f;
+
+			GB1.ResizeNow(targetScale);
+
+            // Set the new goo to also be that size
+            GooBall GB2 = newGoo.GetComponent<GooBall>();
+			GB2.ResizeNow(targetScale);
+            
+            // Reposition new goo to be in the same position as the original
+            newGoo.transform.position = go.transform.position;
         }
         else // Not enough goo!
         {
@@ -74,15 +79,15 @@ public class TheManager : MonoBehaviour
     public void MergeGooBall(GameObject small, GameObject large)
     {
         Debug.Log("Merging ..");
-        large.transform.localScale += small.transform.localScale;
-        float halfscale = small.transform.localScale.x * 0.5f;
-        if (large.transform.position.x > small.transform.position.x)
-            large.transform.position -= new Vector3(halfscale, -halfscale, 0.0f);
-        else
-            large.transform.position += new Vector3(halfscale, halfscale, 0.0f);
+        GooBall GBlarge = large.GetComponent<GooBall>();
+        GooBall GBsmall = small.GetComponent<GooBall>();
+
+        //Increase the size of the larger goo
+        GBlarge.Resize(GBlarge.TargetScale + GBsmall.TargetScale);
+
         small.SetActive (false);
         g_gooBallsPool.Push (small);
-        g_gooBalls.RemoveAt (g_gooBalls.IndexOf (small));
+        g_gooBalls.Remove (small);
         UpdatePositions();
     }
 
@@ -136,12 +141,13 @@ public class TheManager : MonoBehaviour
 
     public void UpdatePositions()
     {
+        //get the top edge of the road as the starting point
         float currentPos = Road.transform.position.x - ((Road.transform.localScale.x * 10.0f) / 2.0f);
         for (int i = 0; i < g_gooBalls.Count; ++i)
         {
-            float scale = g_gooBalls[i].transform.localScale.x*0.5f;
-            g_gooBalls[i].GetComponent<GooBall>().TargetPosition = (new Vector3(currentPos + scale, scale, 0));
-            g_gooBalls[i].GetComponent<GooBall>().Move();
+            GooBall GB = g_gooBalls[i].GetComponent<GooBall>();
+            float scale = GB.TargetScale.x * 0.5f;
+            GB.Move(new Vector3(currentPos + scale, scale, 0));
             currentPos += scale * 2.0f;
         }
     }
