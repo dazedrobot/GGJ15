@@ -15,19 +15,7 @@ public class GooBall : MonoBehaviour
 		if (Input.GetMouseButtonDown (0)) 
 		{
 			//rigidbody.AddForce(new Vector3(0.0f, 100.0f, 0.0f));
-			Debug.Log("Click");
-		}
-	}
-
-	void OnTriggerEnter(Collider collider)
-	{
-		if (collider.gameObject.tag.ToString() == "Spike") 
-		{
-			gameObject.transform.localScale = gameObject.transform.localScale / 2;
-            gameObject.transform.position -= new Vector3(0.0f, 0.0f, 0.0f);
-			GameObject.FindWithTag("TheManager").GetComponent<TheManager>().SplitGooBall(this.gameObject);
-
-			Debug.Log("SPLIT");
+			//Debug.Log("Click");
 		}
 	}
 }

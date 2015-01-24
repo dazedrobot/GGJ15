@@ -34,7 +34,12 @@ public class TheManager : MonoBehaviour
 		int index = g_gooBalls.IndexOf(go);
         g_gooBalls.Insert(index, g_gooBallsPool.Pop());
         g_gooBalls[index].SetActive(true);
+        // Scale
+        go.transform.localScale /= 2.0f;
 		g_gooBalls[index].transform.localScale = go.transform.localScale;
-        g_gooBalls[index].transform.position = new Vector3(go.transform.position.x + 0.0f, 10.0f, 0.0f);
+        // Reposition
+        g_gooBalls[index].transform.position = go.transform.position + new Vector3(go.transform.localScale.x / 2.0f, 0.0f, 0.0f);
+        go.transform.position -= new Vector3(go.transform.localScale.x / 2.0f, 0.0f, 0.0f);
+        
 	}
 }
