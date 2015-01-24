@@ -6,8 +6,11 @@ public class GooBall : MonoBehaviour
 {
     public List<GameObject> Knives;
     public List<GameObject> Mergers;
-    private bool m_jump = true;
-    // Use this for initialization
+    public bool g_phase = false;
+    private float m_duration = 0.0f;
+    private float m_cooldown = 0.0f;
+    
+    
     void Start () 
     {
         Knives = new List<GameObject>();
@@ -18,16 +21,22 @@ public class GooBall : MonoBehaviour
 	{
 		if (Input.GetMouseButtonDown (0)) 
 		{
-            if(m_jump == true)
-            {
-                m_jump = false;
-                rigidbody.AddForce(new Vector3(0.0f, 500.0f, 0.0f));
-            }
+            g_phase = true;
+            renderer.material.color = new Color(0.8f, 0.0f, 0.8f, 0.5f);
 		}
+        if(g_phase == true)
+            {
+                m_duration += Time.deltaTime;
+                if(m_duration >= 2.0f)
+                {
+                    g_phase = false;
+                    m_duration = 0.0f;
+                    renderer.material.color = new Color(0.0f, 0.8f, 0.0f, 1.0f);
+                }
+            }
+        if (m_cooldown > 0)
+        {
+            m_cooldown -= Time.deltaTime;
+        }
 	}
-
-    void OnCollisionEnter(Collision col)
-    {
-        m_jump = true;
-    }
 }
