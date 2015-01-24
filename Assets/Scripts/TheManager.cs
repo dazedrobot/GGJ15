@@ -11,6 +11,7 @@ public class TheManager : MonoBehaviour
     public List<GameObject> g_gooBalls;
 	public GameObject LaneRendererObj;
 	public GameObject SpikePrefab;
+	public GameObject MergerPrefab;
 	private LaneRenderer LR;
 	
 	void Start () 
@@ -29,6 +30,7 @@ public class TheManager : MonoBehaviour
         g_gooBalls[0].transform.position = new Vector3(0.0f, 0.0f, 0.0f);
 		LR = LaneRendererObj.GetComponent<LaneRenderer>();
 		LR.Process ();
+		MakeSpike ();
 	}
 
 	void Update () 
@@ -63,6 +65,12 @@ public class TheManager : MonoBehaviour
 
 	public void MakeSpike()
 	{
+		int r = Random.Range(0, g_gooBalls.Count-1);
+		GameObject newSpike =  (GameObject)Instantiate(SpikePrefab, new Vector3(g_gooBalls [r].transform.position.x, 0, 15), Quaternion.identity);
+	}
+
+	public void MakeMerger()
+	{/*
 		List<intTouple> things = new List<intTouple>();
 		for (int i = 0; i < g_gooBalls.Count; ++i)
 		{
@@ -73,16 +81,17 @@ public class TheManager : MonoBehaviour
 				}
 			}
 			//check below
-			if(i<g_gooBalls.Count){
+			if(i<g_gooBalls.Count-1){
 				if(g_gooBalls[i+1].transform.localScale.x == 0){
 					things.Add(new intTouple(i, i+1));
 				}
 			}
 		}
-		int r = Random.Range(0, things.Count);
-		GameObject newSpike =  (GameObject)Instantiate(SpikePrefab, new Vector3(g_gooBalls [things [r].x].transform.position.x, 10, 0), Quaternion.identity);
-		newSpike.GetComponent<Spike>().targetGoo = g_gooBalls[things[r].y];
-		new Spike ();
-
+		if (things.Count < 1) {
+			return;		
+		}
+		int r = Random.Range(0, things.Count-1);
+		GameObject newMerger =  (GameObject)Instantiate(MergerPrefab, new Vector3(g_gooBalls [things [r].x].transform.position.x, 15, 0), Quaternion.identity);
+		newSpike.GetComponent<Merger>().targetGoo = g_gooBalls[things[r].y];*/
 	}
 }
