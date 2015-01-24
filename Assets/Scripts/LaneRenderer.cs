@@ -10,15 +10,13 @@ public class LaneRenderer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		mgr = Manager.GetComponent<TheManager> ();
-
 	}
 
 	// Update is called once per frame
 	void Update () {
-		Process ();
 	}
 
-	void Process(){
+	public void Process(){
 		//Get rid of all the lines, we could keep some of them but I aint coded that right now
 		foreach(Transform child in transform) {
 			Destroy(child.gameObject);
@@ -44,7 +42,5 @@ public class LaneRenderer : MonoBehaviour {
 			prevX += mgr.g_gooBalls[i-1].transform.localScale.x;
 			Lines [i].transform.position = new Vector3(prevX,0,0);
 		}
-
-		//Lines [2].transform.position = new Vector3(2,0,0);
 	}
 }

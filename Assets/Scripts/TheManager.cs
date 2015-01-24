@@ -9,7 +9,8 @@ public class TheManager : MonoBehaviour
     public GameObject g_gooBallContainer;
 	public Stack<GameObject> g_gooBallsPool;
     public List<GameObject> g_gooBalls;
-
+	public GameObject LaneRendererObj;
+	private LaneRenderer LR;
 	void Start () 
 	{
         g_gooBallContainer = new GameObject("GooBallContainer");
@@ -24,6 +25,8 @@ public class TheManager : MonoBehaviour
         g_gooBalls.Add(g_gooBallsPool.Pop());
         g_gooBalls[0].SetActive(true);
         g_gooBalls[0].transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+		LR = LaneRendererObj.GetComponent<LaneRenderer>();
+		LR.Process ();
 	}
 
 	void Update () 
@@ -43,6 +46,7 @@ public class TheManager : MonoBehaviour
         // Reposition
         g_gooBalls[index].transform.position = go.transform.position - new Vector3(go.transform.localScale.x / 2.0f, 0.0f, 0.0f);
         go.transform.position += new Vector3(go.transform.localScale.x / 2.0f, 0.0f, 0.0f);
+		LR.Process ();
         
 	}
 }

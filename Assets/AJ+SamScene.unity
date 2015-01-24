@@ -399,7 +399,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_gooBallPrefab: {fileID: 185454, guid: 344affe650d3f3e47ad2b1493bca6333, type: 2}
+  g_gooBallContainer: {fileID: 0}
   g_gooBalls: []
+  LaneRendererObj: {fileID: 193346555}
 --- !u!1 &924547434
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,6 +615,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 11401244, guid: babe3400b4201d44496006c3f344c21b, type: 2}
+      propertyPath: LaneRendererObj
+      value: 
+      objectReference: {fileID: 193346555}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: babe3400b4201d44496006c3f344c21b, type: 2}
   m_RootGameObject: {fileID: 905414539}
