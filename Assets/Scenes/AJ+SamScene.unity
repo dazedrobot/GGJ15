@@ -424,7 +424,7 @@ Transform:
   - {fileID: 1943442409}
   - {fileID: 449569564}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!1 &328364506
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,6 +1108,10 @@ Prefab:
       propertyPath: g_slimeBar
       value: 
       objectReference: {fileID: 1664690277}
+    - target: {fileID: 11401244, guid: babe3400b4201d44496006c3f344c21b, type: 2}
+      propertyPath: spawnChance
+      value: .00499999989
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: babe3400b4201d44496006c3f344c21b, type: 2}
   m_RootGameObject: {fileID: 905414539}
@@ -1521,8 +1525,9 @@ MonoBehaviour:
   splitSound: {fileID: 8300000, guid: 1e862caadd1f8ca4189a95eb4f7e60e4, type: 3}
   deathSound: {fileID: 8300000, guid: a52a96876704e05469610112bd8fa907, type: 3}
   mergeSound: {fileID: 8300000, guid: e31c625007704804498d9071b6b1ae66, type: 3}
-  spawnChance: .00999999978
+  spawnChance: .00499999989
   spawnSplit: .699999988
+  speedCopy: 0
 --- !u!82 &905414542
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2081,7 +2086,7 @@ RectTransform:
   m_Children:
   - {fileID: 1684084331}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}

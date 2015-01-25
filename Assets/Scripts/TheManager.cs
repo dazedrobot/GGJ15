@@ -28,9 +28,14 @@ public class TheManager : MonoBehaviour
 	
 	public float spawnChance = 0.01f;
 	public float spawnSplit = 0.7f;
+    private static float initalSpeed;
+    private static float timeSinceSplit = 0.0f;
+
+    public float speedCopy;
     
     void Start () 
     {
+        initalSpeed = GAMESPEED;
 		Road = Road2;
         //create stack of unused goo
         g_gooBallContainer = new GameObject("GooBallContainer");
@@ -72,10 +77,14 @@ public class TheManager : MonoBehaviour
         {
             MakeSpike();
         }
+        timeSinceSplit += 0.0005f;
+        GAMESPEED = initalSpeed + timeSinceSplit;
+        speedCopy = GAMESPEED;
     }
 
     public void SplitGooBall(GameObject go)
     {
+        timeSinceSplit = 0.0f;
         if (go.transform.localScale.x * 0.5f > 0.5f)
         {
             source.PlayOneShot(splitSound);
