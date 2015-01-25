@@ -123,6 +123,7 @@ public class TheManager : MonoBehaviour
         }
 
         //delete small goo.
+		small.GetComponent<GooInput>().releaseInput();
         small.SetActive (false);
         g_gooBallsPool.Push (small);
         g_gooBalls.Remove (small);
