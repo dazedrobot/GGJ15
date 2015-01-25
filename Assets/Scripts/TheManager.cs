@@ -24,7 +24,7 @@ public class TheManager : MonoBehaviour
     public AudioClip mergeSound;
 
 	public static float GOOSTARTZ = -20.0f;
-    public static float GAMESPEED = 1.0f;
+    public static float GAMESPEED = 3.5f;
 	
 	public float spawnChance = 0.01f;
 	public float spawnSplit = 0.7f;
@@ -96,6 +96,18 @@ public class TheManager : MonoBehaviour
             
             // Reposition new goo to be in the same position as the original
             newGoo.transform.position = go.transform.position;
+
+			//Delete any spikes or mergers heading for original goo
+			for (int i = 0; i < GB1.Knives.Count; ++i)
+			{
+				Destroy(GB1.Knives[i]);
+			}
+			
+			for (int i = 0; i < GB1.Mergers.Count; ++i)
+			{
+				Destroy(GB1.Mergers[i]);
+			}
+
         }
         else // Not enough goo!
         {
@@ -111,7 +123,7 @@ public class TheManager : MonoBehaviour
             }
             g_slimeBar.GetComponent<SlimeBar>().DisplayRemainingLife(temp);
 
-            if(temp > 0)
+            if(temp <= 0)
             {
                 gameObject.GetComponent<LoadOnClick>().LoadScene(2);
             }
@@ -201,9 +213,21 @@ public class TheManager : MonoBehaviour
         //pick a random pair
         int r = Random.Range(0, things.Count);
         //make a merger
-		GameObject newMerger =  (GameObject)Instantiate(MergerPrefab, new Vector3(g_gooBalls [things [r].x].transform.position.x, g_gooBalls [things [r].x].transform.position.y, (Road.transform.position.z+Road.transform.localScale.z*5.0f)), Quaternion.identity);
+
+        GameObject newMerger =  (GameObject)Instantiate(MergerPrefab, new Vector3(g_gooBalls [things [r].x].transform.position.x, g_gooBalls [things [r].x].transform.position.y, (Road.transform.position.z+Road.transform.localScale.z*5.0f)), Quaternion.identity);
+
+        //newMerger.transform.localScale = new Vector3(newMerger.transform.localScale.x, newMerger.transform.localScale.y, newMerger.transform.localScale.z * -1.0f);
+     //   newMerger.transform.localScale = Vector3.Scale(newMerger.transform.localScale, new Vector3(-1.0f, 1, 1));
+        if (g_gooBalls[things[r].y].transform.position.x > g_gooBalls[things[r].x].transform.position.x)
+        {
+            newMerger.GetComponent<Merger>().direction = -1.0f;
+        }
+        else
+        {
+            newMerger.GetComponent<Merger>().direction = 1.0f;
+        }
         //make the merger the size of the small goo
-        newMerger.transform.localScale = new Vector3(g_gooBalls[things[r].x].transform.localScale.x * 0.5f, 5, g_gooBalls[things[r].x].transform.localScale.z * 0.25f);
+        newMerger.transform.localScale = new Vector3(g_gooBalls[things[r].x].transform.localScale.z * 0.5f, 5, g_gooBalls[things[r].x].transform.localScale.x * 0.25f);
         //point the merger target to the big goo.
         newMerger.GetComponent<Merger>().g_largeGooBall = g_gooBalls[things[r].y];
         //tell the merger about which goo to head for
