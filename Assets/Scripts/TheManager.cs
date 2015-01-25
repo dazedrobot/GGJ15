@@ -10,13 +10,13 @@ public class TheManager : MonoBehaviour
     public GameObject MergerPrefab;
     public static GameObject Road;
 	public GameObject Road2;
+    public GameObject g_slimeBar;
     //
     public static int g_numGoo = 128;
     public GameObject g_gooBallContainer;
     public Stack<GameObject> g_gooBallsPool;
     public List<GameObject> g_gooBalls;
-    public GameObject g_slimeBar;
-
+    
     // Sounds
     private AudioSource source;
     public AudioClip splitSound;
@@ -32,7 +32,6 @@ public class TheManager : MonoBehaviour
     void Start () 
     {
 		Road = Road2;
-
         //create stack of unused goo
         g_gooBallContainer = new GameObject("GooBallContainer");
         g_gooBallsPool = new Stack<GameObject>();
@@ -53,7 +52,7 @@ public class TheManager : MonoBehaviour
         source = GetComponent<AudioSource>();
     }
 
-    void Update () 
+    void Update() 
     {
         if (Random.Range(0f, 1f) < spawnChance * (GAMESPEED))
         {
@@ -77,9 +76,9 @@ public class TheManager : MonoBehaviour
 
     public void SplitGooBall(GameObject go)
     {
-        source.PlayOneShot(splitSound);
         if (go.transform.localScale.x * 0.5f > 0.5f)
         {
+            source.PlayOneShot(splitSound);
             int index = g_gooBalls.IndexOf(go);
             g_gooBalls.Insert(index, g_gooBallsPool.Pop());
             GameObject newGoo = g_gooBalls[index];
@@ -100,6 +99,7 @@ public class TheManager : MonoBehaviour
         }
         else // Not enough goo!
         {
+            source.PlayOneShot(deathSound);
             go.SetActive(false);
             g_gooBallsPool.Push(go);
             g_gooBalls.Remove(go);
@@ -109,14 +109,19 @@ public class TheManager : MonoBehaviour
             {
                 temp += g_gooBalls[i].transform.localScale.x;
             }
-            Debug.Log("Display Re");
             g_slimeBar.GetComponent<SlimeBar>().DisplayRemainingLife(temp);
+
+            if(temp > 0)
+            {
+                gameObject.GetComponent<LoadOnClick>().LoadScene(2);
+            }
         }
         UpdatePositions();
     }
 
     public void MergeGooBall(GameObject small, GameObject large)
     {
+        source.PlayOneShot(mergeSound);
         GooBall GBlarge = large.GetComponent<GooBall>();
         GooBall GBsmall = small.GetComponent<GooBall>();
 
@@ -128,6 +133,7 @@ public class TheManager : MonoBehaviour
         {
             Destroy(GBsmall.Knives[i]);
         }
+
         for (int i = 0; i < GBsmall.Mergers.Count; ++i)
         {
             Destroy(GBsmall.Mergers[i]);
@@ -141,7 +147,8 @@ public class TheManager : MonoBehaviour
         UpdatePositions();
     }
 
-    private struct intTouple{
+    private struct intTouple
+    {
         public int x;
         public int y;
         public intTouple(int x, int y) 

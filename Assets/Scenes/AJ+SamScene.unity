@@ -1478,6 +1478,7 @@ GameObject:
   - 4: {fileID: 905414540}
   - 114: {fileID: 905414541}
   - 82: {fileID: 905414542}
+  - 114: {fileID: 905414543}
   m_Layer: 0
   m_Name: MANAGER
   m_TagString: TheManager
@@ -1514,9 +1515,9 @@ MonoBehaviour:
   SpikePrefab: {fileID: 116854, guid: dbd724bdcc0027a4b89242f00f62cd4a, type: 2}
   MergerPrefab: {fileID: 181786, guid: 4332333546833c9478c9144ab14dd3a2, type: 2}
   Road2: {fileID: 1667726226}
+  g_slimeBar: {fileID: 1664690277}
   g_gooBallContainer: {fileID: 0}
   g_gooBalls: []
-  g_slimeBar: {fileID: 1664690277}
   splitSound: {fileID: 8300000, guid: 1e862caadd1f8ca4189a95eb4f7e60e4, type: 3}
   deathSound: {fileID: 8300000, guid: a52a96876704e05469610112bd8fa907, type: 3}
   mergeSound: {fileID: 8300000, guid: e31c625007704804498d9071b6b1ae66, type: 3}
@@ -1581,6 +1582,17 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &905414543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 905414539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfa8f2be670099d49959e13bde5bc1bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &924547434
 GameObject:
   m_ObjectHideFlags: 0

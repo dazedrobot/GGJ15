@@ -54,6 +54,7 @@ public class GooBall : MonoBehaviour
             }
             UpdateLanes();
         }
+
         if (transform.localScale != TargetScale)
         {
             float lerpPercentDone = (Time.time - lerpSizeStartTime) / (LerpTime / TheManager.GAMESPEED);
@@ -80,6 +81,7 @@ public class GooBall : MonoBehaviour
                     BallRenderer.renderer.material.color = new Color(0.5f, 0.0f, 0.0f, 1.0f);
                 }
             }
+
         if (m_cooldown > 0)
         {
             m_cooldown -= Time.deltaTime;
@@ -97,6 +99,7 @@ public class GooBall : MonoBehaviour
         lerpStartTime = Time.time;
         lerpStartPos = transform.position;
     }
+
     public void MoveNow(Vector3 Position)
     {
         TargetPosition = Position;
@@ -109,6 +112,7 @@ public class GooBall : MonoBehaviour
         lerpSizeStartTime = Time.time;
         lerpStartSize = transform.localScale;
     }
+
     public void ResizeNow(Vector3 Scale)
     {
         TargetScale = Scale;
