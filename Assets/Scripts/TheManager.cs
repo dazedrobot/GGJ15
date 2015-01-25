@@ -18,9 +18,6 @@ public class TheManager : MonoBehaviour
     public GameObject g_slimeBar;
 
 	public static float GOOSTARTZ = -20.0f;
-	
-	public float spawnChance = 0.01f;
-	public float spawnSplit = 0.7f;
     
     void Start () 
     {
@@ -46,15 +43,6 @@ public class TheManager : MonoBehaviour
 
     void Update () 
     {
-		if (Random.Range (0f, 1f) < spawnChance) {
-			if (Random.Range(0f, 1f) < spawnSplit) {
-				MakeSpike();
-			}
-			else {
-				MakeMerger();
-			}
-		}
-
         if (Input.GetKeyDown (KeyCode.M)) 
         {
             MakeMerger();

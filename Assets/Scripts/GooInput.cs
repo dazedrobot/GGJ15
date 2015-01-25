@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
 public class GooInput : MonoBehaviour
 {
-
+    public Image uiImage;
 	public static Dictionary<string, bool> buttonAvailable = new Dictionary<string, bool>{
 		{"ButtonA"  , true},
 		{"ButtonB"  , true},
@@ -18,7 +19,7 @@ public class GooInput : MonoBehaviour
 		{"Start"    , true},
 	
 	};
-	public static Dictionary<string, bool> axisAvailable = new Dictionary<string, bool>{
+    public static Dictionary<string, bool> axisAvailable = new Dictionary<string, bool>{
 		{"LVertical:-"  , true},
 		{"LVertical:+"  , true},
 		{"LHorizontal:-", true},
@@ -34,6 +35,9 @@ public class GooInput : MonoBehaviour
 		{"DPadV:-", true},
 		{"DPadV:+", true},
 	};
+
+    public Sprite[] buttonSprites;
+
 	public bool isAxis = true;
 	public string selectedInput = "";
 
@@ -73,6 +77,7 @@ public class GooInput : MonoBehaviour
 			foreach (string buttonName in buttonAvailable.Keys) {
 				if (buttonAvailable [buttonName] && Input.GetButtonDown (buttonName)) {
 					selectedInput = buttonName;
+                    uiImage.sprite = (Sprite)Resources.Load("textures/AButton");
 					isAxis = false;
 					buttonAvailable [buttonName] = false;
 					return;

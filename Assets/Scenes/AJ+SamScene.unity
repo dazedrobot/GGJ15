@@ -737,7 +737,7 @@ GameObject:
   - 222: {fileID: 605098068}
   - 114: {fileID: 605098067}
   m_Layer: 5
-  m_Name: DPadV:+
+  m_Name: DPadV:-
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1855,7 +1855,7 @@ GameObject:
   - 222: {fileID: 1179026834}
   - 114: {fileID: 1179026833}
   m_Layer: 5
-  m_Name: LVertical:-
+  m_Name: LVertical:+
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2212,7 +2212,7 @@ GameObject:
   - 222: {fileID: 1543261388}
   - 114: {fileID: 1543261387}
   m_Layer: 5
-  m_Name: RVertical:-
+  m_Name: RVertical:+
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2302,7 +2302,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22457398, guid: c33676ceba490d34d9fe9cac70ec6d73, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 22457398, guid: c33676ceba490d34d9fe9cac70ec6d73, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -2674,7 +2674,7 @@ GameObject:
   - 222: {fileID: 1788802377}
   - 114: {fileID: 1788802376}
   m_Layer: 5
-  m_Name: DPadV:-
+  m_Name: DPadV:+
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2964,7 +2964,7 @@ GameObject:
   - 222: {fileID: 1869201969}
   - 114: {fileID: 1869201968}
   m_Layer: 5
-  m_Name: RVertical:+
+  m_Name: RVertical:-
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3235,7 +3235,7 @@ GameObject:
   - 222: {fileID: 1963791695}
   - 114: {fileID: 1963791694}
   m_Layer: 5
-  m_Name: LVertical:+
+  m_Name: LVertical:-
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

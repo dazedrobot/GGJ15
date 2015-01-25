@@ -95,7 +95,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 113762}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 2.05912733, y: 5.00000095, z: 3.76060963}
+  m_LocalPosition: {x: 45.3190079, y: 32.385498, z: -10.180027}
   m_LocalScale: {x: 10, y: 15, z: 10}
   m_Children:
   - {fileID: 22483074}
@@ -180,6 +180,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e0436d56cbebe4cbd68991a7f0d311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiImage: {fileID: 11483072}
+  buttonSprites:
+  - {fileID: 21300000, guid: eb14e30d2f9cb544cbe29dac77cd649c, type: 3}
+  - {fileID: 21300000, guid: eaf3a8479773ce04db9573bbb045d7c4, type: 3}
+  - {fileID: 21300000, guid: 0ec03604c4ab02c4f8dee2e740889c67, type: 3}
+  - {fileID: 21300000, guid: 36aac0afef379b846b0ecda402ee4c6a, type: 3}
   isAxis: 1
   selectedInput: 
 --- !u!114 &11465062
