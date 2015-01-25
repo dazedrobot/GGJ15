@@ -111,7 +111,7 @@ public class TheManager : MonoBehaviour
             }
             g_slimeBar.GetComponent<SlimeBar>().DisplayRemainingLife(temp);
 
-            if(temp < 10)
+            if(temp > 0)
             {
                 gameObject.GetComponent<LoadOnClick>().LoadScene(2);
             }
