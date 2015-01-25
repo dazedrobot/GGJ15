@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ChangeMusic : MonoBehaviour {
-
+public class ChangeMusic : MonoBehaviour 
+{
     public AudioClip music;
     private AudioSource source;
 	
 	void Awake () 
-    {
-        source = GetComponent<AudioSource>();
+    { 
+       source = GetComponent<AudioSource>();
 	}
+
     void OnLevelWasLoaded(int level)
     {
         if (level > 0)
