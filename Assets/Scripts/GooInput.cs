@@ -36,6 +36,20 @@ public class GooInput : MonoBehaviour
 		{"DPadV:+", true},
 	};
 
+	public static void ReleaseAllKeys() {
+
+		var buffer = new List<string>(buttonAvailable.Keys);
+
+		foreach (string k in buffer) {
+			buttonAvailable[k] = true;
+		}
+
+		buffer = new List<string>(axisAvailable.Keys);
+		foreach (string k in buffer) {
+			axisAvailable[k] = true;
+		}
+	}
+
     public Sprite[] buttonSprites;
 
     private Dictionary<string, int> spriteLookup;

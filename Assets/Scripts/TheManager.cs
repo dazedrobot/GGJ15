@@ -34,8 +34,12 @@ public class TheManager : MonoBehaviour
     public float speedCopy;
     
     void Start () 
+
     {
         initalSpeed = GAMESPEED;
+
+		GooInput.ReleaseAllKeys();
+		//GooInput.ReleaseAllKeys ();
 		Road = Road2;
         //create stack of unused goo
         g_gooBallContainer = new GameObject("GooBallContainer");
