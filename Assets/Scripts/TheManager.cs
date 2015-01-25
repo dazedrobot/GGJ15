@@ -30,7 +30,9 @@ public class TheManager : MonoBehaviour
 	public float spawnSplit = 0.7f;
     
     void Start () 
-    {
+	{
+		GooInput.ReleaseAllKeys();
+		//GooInput.ReleaseAllKeys ();
 		Road = Road2;
         //create stack of unused goo
         g_gooBallContainer = new GameObject("GooBallContainer");
