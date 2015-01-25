@@ -115,12 +115,15 @@ public class GooBall : MonoBehaviour
         transform.localScale = Scale;
     }
 
-	public void Phase() {
+	public void Phase()
+    {
 		g_phase = true;
 		BallRenderer.renderer.material.color = new Color(0.5f, 0.0f, 0.5f, 0.8f);
 	}
-    private void UpdateLanes(){
-		laneLineRenderer.SetPosition(0, new Vector3(transform.position.x + transform.localScale.x * 0.5f, 1, TheManager.GOOSTARTZ - 10.0f));
+
+    private void UpdateLanes()
+    {
+		laneLineRenderer.SetPosition(0, new Vector3(transform.position.x + transform.localScale.x * 0.5f, 1, TheManager.GOOSTARTZ - 30.0f));
 		laneLineRenderer.SetPosition(1, new Vector3(transform.position.x + transform.localScale.x * 0.5f, 1, TheManager.Road.transform.position.z+TheManager.Road.transform.localScale.z*5.0f));
     }
 }

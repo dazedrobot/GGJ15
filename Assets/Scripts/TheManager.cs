@@ -17,6 +17,12 @@ public class TheManager : MonoBehaviour
     public List<GameObject> g_gooBalls;
     public GameObject g_slimeBar;
 
+    // Sounds
+    private AudioSource source;
+    public AudioClip splitSound;
+    public AudioClip deathSound;
+    public AudioClip mergeSound;
+
 	public static float GOOSTARTZ = -20.0f;
 	
 	public float spawnChance = 0.01f;
@@ -42,6 +48,8 @@ public class TheManager : MonoBehaviour
         g_gooBalls[0].SetActive(true);
 		g_gooBalls[0].transform.position = new Vector3(0.0f, g_gooBalls[0].transform.localScale.x * 0.5f, GOOSTARTZ);
         UpdatePositions();
+
+        source = GetComponent<AudioSource>();
     }
 
     void Update () 
@@ -67,6 +75,7 @@ public class TheManager : MonoBehaviour
 
     public void SplitGooBall(GameObject go)
     {
+        source.PlayOneShot(splitSound);
         if (go.transform.localScale.x * 0.5f > 0.5f)
         {
             int index = g_gooBalls.IndexOf(go);
