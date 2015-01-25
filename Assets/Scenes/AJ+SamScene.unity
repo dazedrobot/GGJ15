@@ -510,6 +510,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5259a41fa68d66947a6bd77234d0082f, type: 2}
+    - target: {fileID: 11481696, guid: 6421aaa4f6764a144b45e4c67c5ba106, type: 2}
+      propertyPath: useGamespeed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6421aaa4f6764a144b45e4c67c5ba106, type: 2}
   m_RootGameObject: {fileID: 1667726226}
@@ -2620,6 +2624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: -.5
+  useGamespeed: 1
 --- !u!23 &1667726228
 Renderer:
   m_ObjectHideFlags: 0
@@ -2873,6 +2878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: -.00999999978
+  useGamespeed: 0
 --- !u!1 &1824245019
 GameObject:
   m_ObjectHideFlags: 0
