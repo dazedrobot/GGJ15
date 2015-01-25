@@ -24,7 +24,7 @@ public class TheManager : MonoBehaviour
     public AudioClip mergeSound;
 
 	public static float GOOSTARTZ = -20.0f;
-    public static float GAMESPEED = 1.0f;
+    public static float GAMESPEED = 3.0f;
 	
 	public float spawnChance = 0.01f;
 	public float spawnSplit = 0.7f;
@@ -96,6 +96,18 @@ public class TheManager : MonoBehaviour
             
             // Reposition new goo to be in the same position as the original
             newGoo.transform.position = go.transform.position;
+
+			//Delete any spikes or mergers heading for original goo
+			for (int i = 0; i < GB1.Knives.Count; ++i)
+			{
+				Destroy(GB1.Knives[i]);
+			}
+			
+			for (int i = 0; i < GB1.Mergers.Count; ++i)
+			{
+				Destroy(GB1.Mergers[i]);
+			}
+
         }
         else // Not enough goo!
         {
@@ -111,7 +123,7 @@ public class TheManager : MonoBehaviour
             }
             g_slimeBar.GetComponent<SlimeBar>().DisplayRemainingLife(temp);
 
-            if(temp > 0)
+            if(temp <= 0)
             {
                 gameObject.GetComponent<LoadOnClick>().LoadScene(2);
             }
