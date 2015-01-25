@@ -20,15 +20,15 @@ public class GooInput : MonoBehaviour
 	
 	};
     public static Dictionary<string, bool> axisAvailable = new Dictionary<string, bool>{
-		{"LVertical:-"  , true},
+		{"LVertical:-"  , true}, //up
 		{"LVertical:+"  , true},
-		{"LHorizontal:-", true},
+		{"LHorizontal:-", true},  //left
 		{"LHorizontal:+", true},
 		{"RVertical:-"  , true},
 		{"RVertical:+"  , true},
 		{"RHorizontal:-", true},
 		{"RHorizontal:+", true},
-		{"Triggers:-", true},
+		{"Triggers:-", true}, //right trigger
 		{"Triggers:+", true},
 		{"DPadH:-", true},
 		{"DPadH:+", true},
@@ -38,7 +38,9 @@ public class GooInput : MonoBehaviour
 
     public Sprite[] buttonSprites;
 
-	public bool isAxis = true;
+    private Dictionary<string, int> spriteLookup;
+
+	public bool isAxis = false;
 	public string selectedInput = "";
 
 	private GooBall ballComponent;
@@ -48,6 +50,11 @@ public class GooInput : MonoBehaviour
 	void Start ()
 	{
 		ballComponent = GetComponent<GooBall> ();
+        spriteLookup = new Dictionary<string, int>();
+        for (int i = 0; i < buttonSprites.Length; ++i)
+        {
+            spriteLookup.Add(buttonSprites[i].name, i);
+        }
 	}
 
 	void OnDisable ()
@@ -61,7 +68,7 @@ public class GooInput : MonoBehaviour
 		else {
 			buttonAvailable[selectedInput] = true;
 		}
-		isAxis = true;
+		isAxis = false;
 		selectedInput = "";
 	}
 	
@@ -77,7 +84,7 @@ public class GooInput : MonoBehaviour
 			foreach (string buttonName in buttonAvailable.Keys) {
 				if (buttonAvailable [buttonName] && Input.GetButtonDown (buttonName)) {
 					selectedInput = buttonName;
-                    uiImage.sprite = (Sprite)Resources.Load("textures/AButton");
+                    uiImage.sprite = buttonSprites[spriteLookup[buttonName]];
 					isAxis = false;
 					buttonAvailable [buttonName] = false;
 					return;
@@ -94,6 +101,7 @@ public class GooInput : MonoBehaviour
 						selectedInput = axisDirName;
 						isAxis = true;
 						axisAvailable [axisDirName] = false;
+                        uiImage.sprite = buttonSprites[spriteLookup[axisDirName]];
 						return;
 					}
 					else {

@@ -5,17 +5,18 @@ TextureImporter:
     21300000: DPadV:-
     21300002: DPadH:+
     21300004: RVertical:-
-    21300006: RVertical:+
+    21300006: LVertical:+
     21300008: DPadH:-
     21300010: DPadV:+
     21300012: RHorizontal:-
     21300014: RHorizontal:+
     21300016: LVertical:-
-    21300018: RVertical:+
+    21300018: LVertical:+
     21300020: RThumb
     21300022: LThumb
     21300024: LHorizontal:-
     21300026: LHorizontal:+
+    21300028: RVertical:+
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -120,8 +121,8 @@ TextureImporter:
     - name: RHorizontal:-
       rect:
         serializedVersion: 2
-        x: 256
-        y: 256
+        x: 255
+        y: 255
         width: 128
         height: 128
       alignment: 0
@@ -147,7 +148,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RVertical:+
+    - name: LVertical:+
       rect:
         serializedVersion: 2
         x: 128
