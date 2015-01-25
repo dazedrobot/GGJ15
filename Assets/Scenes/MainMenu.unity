@@ -150,6 +150,7 @@ GameObject:
   - 4: {fileID: 174764252}
   - 82: {fileID: 174764251}
   - 114: {fileID: 174764250}
+  - 114: {fileID: 174764253}
   m_Layer: 0
   m_Name: BackgroundMusic
   m_TagString: Untagged
@@ -238,6 +239,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &174764253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 174764249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a51bff2ef2f4f3488630873df96c983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music: {fileID: 8300000, guid: fd4b7e052be2c534da45923c9d7d4e30, type: 3}
 --- !u!1 &529729318
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,7 +900,7 @@ RectTransform:
   m_GameObject: {fileID: 1821208512}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 2115168517}
   m_Father: {fileID: 1526088604}
@@ -908,7 +921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca33b01f89d02c44ad98bfd96a61652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slimeSlider: {fileID: 2115168518}
+  g_slimeSlider: {fileID: 0}
 --- !u!114 &1821208515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -921,7 +934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca33b01f89d02c44ad98bfd96a61652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slimeSlider: {fileID: 2115168518}
+  g_slimeSlider: {fileID: 0}
 --- !u!114 &1821208516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1100,7 +1113,7 @@ RectTransform:
   m_GameObject: {fileID: 2115168516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: .5, y: 1, z: .5}
   m_Children:
   - {fileID: 529729319}
   - {fileID: 1026263394}
