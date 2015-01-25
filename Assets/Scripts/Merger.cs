@@ -6,9 +6,9 @@ public class Merger : MonoBehaviour
 {
     public GameObject g_largeGooBall;
     public GooBall g_smallGooBall;
+    public float direction = 1;
 	void Start ()
     {
-	    
 	}
 	
 	void Update () 
@@ -18,7 +18,7 @@ public class Merger : MonoBehaviour
         {
             Destroy(gameObject);
         }
-		transform.localScale = new Vector3(g_smallGooBall.TargetScale.x * 0.5f, g_smallGooBall.TargetScale.y*0.5f, g_smallGooBall.TargetScale.z * 0.25f);
+        transform.localScale = new Vector3(direction * g_smallGooBall.TargetScale.x * 0.5f, g_smallGooBall.TargetScale.y * 0.5f, g_smallGooBall.TargetScale.z * 0.25f);
         transform.position = new Vector3(g_smallGooBall.transform.position.x, transform.position.y, transform.position.z);
 	}
 

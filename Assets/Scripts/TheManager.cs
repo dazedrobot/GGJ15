@@ -24,7 +24,7 @@ public class TheManager : MonoBehaviour
     public AudioClip mergeSound;
 
 	public static float GOOSTARTZ = -20.0f;
-    public static float GAMESPEED = 1.0f;
+    public static float GAMESPEED = 4.0f;
 	
 	public float spawnChance = 0.01f;
 	public float spawnSplit = 0.7f;
@@ -194,9 +194,21 @@ public class TheManager : MonoBehaviour
         //pick a random pair
         int r = Random.Range(0, things.Count);
         //make a merger
-		GameObject newMerger =  (GameObject)Instantiate(MergerPrefab, new Vector3(g_gooBalls [things [r].x].transform.position.x, g_gooBalls [things [r].x].transform.position.y, (Road.transform.position.z+Road.transform.localScale.z*5.0f)), Quaternion.identity);
+
+        GameObject newMerger =  (GameObject)Instantiate(MergerPrefab, new Vector3(g_gooBalls [things [r].x].transform.position.x, g_gooBalls [things [r].x].transform.position.y, (Road.transform.position.z+Road.transform.localScale.z*5.0f)), Quaternion.identity);
+
+        //newMerger.transform.localScale = new Vector3(newMerger.transform.localScale.x, newMerger.transform.localScale.y, newMerger.transform.localScale.z * -1.0f);
+     //   newMerger.transform.localScale = Vector3.Scale(newMerger.transform.localScale, new Vector3(-1.0f, 1, 1));
+        if (g_gooBalls[things[r].y].transform.position.x > g_gooBalls[things[r].x].transform.position.x)
+        {
+            newMerger.GetComponent<Merger>().direction = -1.0f;
+        }
+        else
+        {
+            newMerger.GetComponent<Merger>().direction = 1.0f;
+        }
         //make the merger the size of the small goo
-        newMerger.transform.localScale = new Vector3(g_gooBalls[things[r].x].transform.localScale.x * 0.5f, 5, g_gooBalls[things[r].x].transform.localScale.z * 0.25f);
+        newMerger.transform.localScale = new Vector3(g_gooBalls[things[r].x].transform.localScale.z * 0.5f, 5, g_gooBalls[things[r].x].transform.localScale.x * 0.25f);
         //point the merger target to the big goo.
         newMerger.GetComponent<Merger>().g_largeGooBall = g_gooBalls[things[r].y];
         //tell the merger about which goo to head for
