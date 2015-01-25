@@ -181,7 +181,7 @@ GameObject:
   - 222: {fileID: 22215022}
   - 114: {fileID: 11415022}
   m_Layer: 5
-  m_Name: LVertical:-
+  m_Name: LVertical:+
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -215,7 +215,7 @@ GameObject:
   - 222: {fileID: 22215026}
   - 114: {fileID: 11415026}
   m_Layer: 5
-  m_Name: DPadV:+
+  m_Name: DPadV:-
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -249,7 +249,7 @@ GameObject:
   - 222: {fileID: 22215030}
   - 114: {fileID: 11415030}
   m_Layer: 5
-  m_Name: DPadV:-
+  m_Name: DPadV:+
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -351,7 +351,7 @@ GameObject:
   - 222: {fileID: 22215042}
   - 114: {fileID: 11415042}
   m_Layer: 5
-  m_Name: RVertical:-
+  m_Name: RVertical:+
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -400,7 +400,7 @@ GameObject:
   - 222: {fileID: 22239046}
   - 114: {fileID: 11439046}
   m_Layer: 5
-  m_Name: LVertical:+
+  m_Name: LVertical:-
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -417,7 +417,7 @@ GameObject:
   - 222: {fileID: 22239048}
   - 114: {fileID: 11439048}
   m_Layer: 5
-  m_Name: RVertical:+
+  m_Name: RVertical:-
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
