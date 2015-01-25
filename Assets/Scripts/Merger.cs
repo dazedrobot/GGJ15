@@ -13,7 +13,7 @@ public class Merger : MonoBehaviour
 	
 	void Update () 
     {
-        transform.Translate(new Vector3(0, 0, -10.0f) * Time.deltaTime);
+        transform.Translate(new Vector3(0, 0, -5.0f * TheManager.GAMESPEED) * Time.deltaTime);
         if (transform.position.z < -20)
         {
             Destroy(gameObject);

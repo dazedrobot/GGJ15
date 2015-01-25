@@ -3,9 +3,11 @@ using System.Collections;
 
 public class ChangeMusic : MonoBehaviour 
 {
-    public AudioClip music;
-    private AudioSource source;
-	
+
+    public AudioClip titleMusic;
+	public AudioClip levelMusic;
+	private AudioSource source;
+
 	void Awake () 
     { 
        source = GetComponent<AudioSource>();
@@ -13,10 +15,16 @@ public class ChangeMusic : MonoBehaviour
 
     void OnLevelWasLoaded(int level)
     {
-        if (level > 0)
+        if (level == 0 || level == 2)
         {
-            source.clip = music;
+            source.clip = titleMusic;
             source.Play();
         }
-    }
+
+		else if (level == 1)
+		{
+			source.clip = levelMusic;
+			source.Play ();
+	    }
+	}
 }

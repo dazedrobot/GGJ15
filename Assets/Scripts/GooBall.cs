@@ -42,7 +42,7 @@ public class GooBall : MonoBehaviour
         //lerp
         if (transform.position != TargetPosition)
         {
-            float lerpPercentDone = (Time.time - lerpStartTime) / LerpTime;
+            float lerpPercentDone = (Time.time - lerpStartTime) / (LerpTime / TheManager.GAMESPEED);
             //avoid rounding errors
             if (lerpPercentDone > 1.0f) 
             {
@@ -57,7 +57,7 @@ public class GooBall : MonoBehaviour
 
         if (transform.localScale != TargetScale)
         {
-            float lerpPercentDone = (Time.time - lerpSizeStartTime) / LerpTime;
+            float lerpPercentDone = (Time.time - lerpSizeStartTime) / (LerpTime / TheManager.GAMESPEED);
             //avoid rounding errors
             if (lerpPercentDone > 1.0f)
             {
