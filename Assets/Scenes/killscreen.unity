@@ -355,6 +355,7 @@ GameObject:
   - 223: {fileID: 371904955}
   - 114: {fileID: 371904954}
   - 114: {fileID: 371904953}
+  - 114: {fileID: 371904957}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -437,6 +438,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &371904957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 371904952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfa8f2be670099d49959e13bde5bc1bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &440314717
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,8 +507,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+<<<<<<< HEAD
       - m_Target: {fileID: 11500000, guid: dfa8f2be670099d49959e13bde5bc1bc, type: 3}
         m_MethodName: 
+=======
+      - m_Target: {fileID: 371904957}
+        m_MethodName: LoadScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 371904957}
+        m_MethodName: LoadScene
+>>>>>>> origin/master
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -952,6 +981,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 371904956}
     m_Modifications:
+    - target: {fileID: 11418690, guid: cbd5df0e3ceb5e24badcd42454cf7e3e, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 22418688, guid: cbd5df0e3ceb5e24badcd42454cf7e3e, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1035,16 +1068,50 @@ Prefab:
     - target: {fileID: 11418690, guid: cbd5df0e3ceb5e24badcd42454cf7e3e, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+<<<<<<< HEAD
       objectReference: {fileID: 11500000, guid: dfa8f2be670099d49959e13bde5bc1bc,
         type: 3}
     - target: {fileID: 11418690, guid: cbd5df0e3ceb5e24badcd42454cf7e3e, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: 
+=======
+      objectReference: {fileID: 371904957}
+    - target: {fileID: 11418690, guid: cbd5df0e3ceb5e24badcd42454cf7e3e, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+>>>>>>> origin/master
       objectReference: {fileID: 0}
     - target: {fileID: 11418690, guid: cbd5df0e3ceb5e24badcd42454cf7e3e, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
+=======
+    - target: {fileID: 11418690, guid: cbd5df0e3ceb5e24badcd42454cf7e3e, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11418690, guid: cbd5df0e3ceb5e24badcd42454cf7e3e, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11418690, guid: cbd5df0e3ceb5e24badcd42454cf7e3e, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 371904957}
+    - target: {fileID: 11418690, guid: cbd5df0e3ceb5e24badcd42454cf7e3e, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 11418690, guid: cbd5df0e3ceb5e24badcd42454cf7e3e, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 11418690, guid: cbd5df0e3ceb5e24badcd42454cf7e3e, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> origin/master
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cbd5df0e3ceb5e24badcd42454cf7e3e, type: 2}
   m_RootGameObject: {fileID: 440314717}
