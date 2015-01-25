@@ -70,6 +70,7 @@ public class GooInput : MonoBehaviour
 		}
 		isAxis = false;
 		selectedInput = "";
+		uiImage.overrideSprite = null;
 	}
 	
 	// Update is called once per frame
@@ -84,7 +85,7 @@ public class GooInput : MonoBehaviour
 			foreach (string buttonName in buttonAvailable.Keys) {
 				if (buttonAvailable [buttonName] && Input.GetButtonDown (buttonName)) {
 					selectedInput = buttonName;
-                    uiImage.sprite = buttonSprites[spriteLookup[buttonName]];
+                    uiImage.overrideSprite = buttonSprites[spriteLookup[buttonName]];
 					isAxis = false;
 					buttonAvailable [buttonName] = false;
 					return;
@@ -101,7 +102,7 @@ public class GooInput : MonoBehaviour
 						selectedInput = axisDirName;
 						isAxis = true;
 						axisAvailable [axisDirName] = false;
-                        uiImage.sprite = buttonSprites[spriteLookup[axisDirName]];
+                        uiImage.overrideSprite = buttonSprites[spriteLookup[axisDirName]];
 						return;
 					}
 					else {

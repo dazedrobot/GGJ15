@@ -204,6 +204,8 @@ MonoBehaviour:
   - {fileID: 21300006, guid: 85a21e3a109883a44ba543bc8fd79dd3, type: 3}
   - {fileID: 21300016, guid: 85a21e3a109883a44ba543bc8fd79dd3, type: 3}
   - {fileID: 21300004, guid: 85a21e3a109883a44ba543bc8fd79dd3, type: 3}
+  - {fileID: 21300030, guid: 85a21e3a109883a44ba543bc8fd79dd3, type: 3}
+  - {fileID: 21300032, guid: 85a21e3a109883a44ba543bc8fd79dd3, type: 3}
   isAxis: 1
   selectedInput: 
 --- !u!114 &11465062
