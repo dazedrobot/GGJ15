@@ -17,6 +17,8 @@ TextureImporter:
     21300024: LHorizontal:-
     21300026: LHorizontal:+
     21300028: RVertical:+
+    21300030: Back
+    21300032: Start
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -192,6 +194,26 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Back
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Start
+      rect:
+        serializedVersion: 2
+        x: 384
         y: 0
         width: 128
         height: 128
