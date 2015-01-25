@@ -57,16 +57,19 @@ public class GooInput : MonoBehaviour
         }
 	}
 
-	void OnDisable ()
-	{
-		if (selectedInput == "") {
-			return;
-		}
+	public void releaseInput() {
 		if (isAxis) {
 			axisAvailable[selectedInput] = true;
 		}
 		else {
 			buttonAvailable[selectedInput] = true;
+		}
+	}
+
+	void OnDisable ()
+	{
+		if (selectedInput == "") {
+			return;
 		}
 		isAxis = false;
 		selectedInput = "";
