@@ -1,18 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-<<<<<<< HEAD
-public class ChangeMusic : MonoBehaviour {
+public class ChangeMusic : MonoBehaviour 
+{
 
     public AudioClip titleMusic;
 	public AudioClip levelMusic;
-=======
-public class ChangeMusic : MonoBehaviour 
-{
-    public AudioClip music;
->>>>>>> origin/master
-    private AudioSource source;
-	
+	private AudioSource source;
+
 	void Awake () 
     { 
        source = GetComponent<AudioSource>();
